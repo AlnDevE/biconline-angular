@@ -3,15 +3,19 @@
         <div class="col-3">
             <div class="filter-container" >
                 <div>
-                    <!-- <div class="description">Categoria</div> -->
-                    <p-dropdown [style]="{'width':'100%'}" inputId="city" [options]="cities" [(ngModel)]="citySelected" placeholder="Selecione uma cidade" optionLabel="name"
+                    <div id="category" class="description">Categoria</div>
+                    <p-dropdown [style]="{'width':'100%'}" inputId="category" [options]="categories"
+                    [(ngModel)]="categorySelected" placeholder="Selecione uma categoria" optionLabel="name"
                     [showClear]="true"></p-dropdown>
-                    <!-- <div class="description">Cidade</div> -->
+                    <div id="citys" class="description">Cidade</div>
+                    <p-dropdown [style]="{'width':'100%'}" inputId="city" [options]="cities"
+                    [(ngModel)]="citySelected" placeholder="Selecione uma cidade" optionLabel="name"
+                    [showClear]="true"></p-dropdown>
                 </div>
             </div>
         </div>
-        <div class="col-9" style="background-color: brown;">
-            Cards
+        <div class="col-9 card-container">
+            <app-card [servicesProviders]="servicesProviders"></app-card>
         </div>
     </div>
 </div>
