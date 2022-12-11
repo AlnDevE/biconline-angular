@@ -15,4 +15,8 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showProfile(provider: any){
+    alert(`showing ${provider}`)
+  }
+
 }

@@ -1,7 +1,22 @@
 
 <div class="row card-container">
-    <div class="card" *ngFor="let provider of servicesProviders">
-        <span>{{provider}}</span>
+    <div (click)="showProfile(provider)" class="card" *ngFor="let provider of servicesProviders">
+        <div class="img-container">
+            <p>PHOTO</p>
+        </div>
+        <div style="margin-top: 7%;"></div>
+        <div class="divisor"></div>
+        <div class="card-body-div">
+            <p class="name">FIRST NAME</p>
+            <div class="infos">
+                <div class="icon">
+                    <img width="20px" height="20px" src="../../../assets/images/localizacao.png" alt=""><p class="card-text">Mogi Mirim<p>
+                </div>
+                <div class="icon">
+                    <img width="20px" height="20px" src="../../../assets/images/info.png" alt=""><p class="card-text">Encanador</p>
+                </div>
+            </div>
 
+        </div>
     </div>
 </div>
