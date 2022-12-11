@@ -1,10 +1,11 @@
 .navInfo{
   background-color: #41d3be;
+    // background-color: #ededed;
   height: 70px;
 }
 
 .formsearch{
-  padding-right: 50px;
+  padding-right: 70px;
 }
 
 .inputsearch{
@@ -13,5 +14,24 @@
 }
 
 .linkcontainer{
-  margin-right: 5%;
+  margin-right:7%;
+}
+
+.logoimage{
+  max-width: 10%;
+  max-height: 7%;
+}
+
+.profileimage{
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+@media (max-width: 600px)
+{
+  .logoimage
+   {
+    max-width: 120px;
+    max-height: 100px;
+  }
 }
