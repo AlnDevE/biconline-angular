@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AutenticacaoUsuarioService } from './autenticacao-usuario.service';
 import { Token } from 'src/app/interfaces/token'
 import { environment } from 'src/environments/environment';
