@@ -7,13 +7,17 @@
         <div style="margin-top: 7%;"></div>
         <div class="divisor"></div>
         <div class="card-body-div">
-            <p class="name">FIRST NAME</p>
+            <p class="name">{{(provider.nome).toUpperCase()}}</p>
             <div class="infos">
                 <div class="icon">
-                    <img width="20px" height="20px" src="../../../assets/images/localizacao.png" alt=""><p class="card-text">Mogi Mirim<p>
+                    <img width="20px" height="20px" src="../../../assets/images/localizacao.png" alt=""><p class="card-text">
+                        {{provider?.cidade}}
+                    <p>
                 </div>
                 <div class="icon">
-                    <img width="20px" height="20px" src="../../../assets/images/info.png" alt=""><p class="card-text">Encanador</p>
+                    <img width="20px" height="20px" src="../../../assets/images/info.png" alt=""><p class="card-text">
+                        {{provider?.servico[0].categoria.nome}}
+                    </p>
                 </div>
             </div>
 

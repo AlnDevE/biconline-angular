@@ -1,6 +1,5 @@
 .navInfo{
   background-color: #41d3be;
-    // background-color: #ededed;
   height: 70px;
 }
 
@@ -38,4 +37,8 @@
   .nav-link{
     color: black;
   }
+}
+
+.nav-link{
+  cursor: pointer;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Provider } from 'src/app/interfaces/provider';
 
 @Component({
   selector: 'app-card',
@@ -15,8 +16,8 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showProfile(provider: any){
-    alert(`showing ${provider}`)
+  showProfile(provider: Provider){
+    alert(`showing ${provider.nome}`)
   }
 
 }

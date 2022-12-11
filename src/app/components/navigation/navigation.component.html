@@ -11,30 +11,30 @@
       </div>
       <div class="offcanvas-body linkcontainer">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <form class="d-flex mt-3 mt-lg-0 formsearch" role="search">
+          <form *ngIf="tokenService.possuiToken()" class="d-flex mt-3 mt-lg-0 formsearch" role="search">
             <input class="form-control me-2 inputsearch" type="search" placeholder="Buscar por serviços">
             <button class="btn" type="submit"><i class="material-icons" style="margin-top: 2px;">search</i></button>
           </form>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/inicio">Início</a>
+            <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Home</a>
+            <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/sobre-nos">Sobre Nós</a>
+            <a class="nav-link" routerLink="/sobre-nos" routerLinkActive="active">Sobre Nós</a>
           </li>
 
           <!-- icone perfil  -->
-          <div class="dropdown">
+          <div class="dropdown" *ngIf="tokenService.possuiToken()">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle profileimage" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="32" height="32" class="rounded-circle me-2">
             </a>
             <ul class="dropdown-menu dropdown-menu-ligth text-small shadow">
-              <li><a class="dropdown-item" href="#">Perfil</a></li>
-              <li><a class="dropdown-item" href="#">Configurações</a></li>
+              <li><a class="dropdown-item" href="">Perfil</a></li>
+              <li><a class="dropdown-item" href="">Configurações</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sair</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Sair</a></li>
             </ul>
           </div>
 

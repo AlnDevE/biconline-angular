@@ -9,14 +9,14 @@ import { TokenService } from 'src/app/services/token/token.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public tokenService:TokenService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  // logout():void{
-  //   this.tokenService.removeToken();
-  //   this.router.navigate(['/login']);
-  // }
+  logout():void{
+    this.tokenService.removeToken();
+    this.router.navigate(['/login']);
+  }
 
 }

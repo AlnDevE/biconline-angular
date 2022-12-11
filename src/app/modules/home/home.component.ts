@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
     private clienteService: ClienteService, private usuarioService: AutenticacaoUsuarioService) {
 
       this.cities = [
-        {name: 'Mogi Mirim'},
-        {name: 'Mogi Guaçu'},
-        {name: 'Itapira'},
-        {name: 'Arthur Nogueira'},
-        {name: 'Limeira'}
+        {nome: 'Mogi Mirim'},
+        {nome: 'Mogi Guaçu'},
+        {nome: 'Itapira'},
+        {nome: 'Arthur Nogueira'},
+        {nome: 'Limeira'}
     ];
 
   }
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         this.categories = data?.content;
       }
     )
-
+    this.getAllProviders();
   }
 
   getAllProviders(){
