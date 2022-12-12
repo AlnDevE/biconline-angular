@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Provider } from 'src/app/interfaces/provider';
+import { PrestadorService } from 'src/app/services/prestador/prestador.service';
 
 @Component({
   selector: 'app-card',
@@ -9,15 +10,18 @@ import { Provider } from 'src/app/interfaces/provider';
 export class CardComponent implements OnInit {
 
   @Input()
-  servicesProviders: any[] = []
+  servicesProviders: any[] = [];
 
-  constructor() { }
+  prestadorView: any = {};
+
+  constructor(public prestadorService: PrestadorService) { }
 
   ngOnInit(): void {
   }
 
   showProfile(provider: Provider){
-    alert(`showing ${provider.nome}`)
+    this.prestadorView = provider;
+    this.prestadorService.showProfile = true;
   }
 
 }
