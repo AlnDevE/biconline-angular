@@ -4,11 +4,13 @@
             <div class="filter-container" >
                 <div>
                     <div id="category" class="description">Categoria</div>
-                    <p-dropdown [style]="{'width':'100%'}" inputId="category" [options]="categories"
+                    <p-dropdown  (onChange)="getFilteredProviders()" [style]="{'width':'100%'}"
+                    inputId="category" [options]="categories"
                     [(ngModel)]="categorySelected" placeholder="Selecione uma categoria" optionLabel="nome"
                     [showClear]="true"></p-dropdown>
                     <div id="citys" class="description">Cidade</div>
-                    <p-dropdown [style]="{'width':'100%'}" inputId="city" [options]="cities"
+                    <p-dropdown (onChange)="getFilteredProviders()" [style]="{'width':'100%'}"
+                    inputId="city" [options]="cities"
                     [(ngModel)]="citySelected" placeholder="Selecione uma cidade" optionLabel="nome"
                     [showClear]="true"></p-dropdown>
                 </div>

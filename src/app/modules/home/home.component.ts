@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
 import { Provider } from 'src/app/interfaces/provider';
+import { Search } from 'src/app/interfaces/search';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   categories: any[] = [];
   categorySelected: any;
   citySelected: any;
+  serviceSearch: any;
 
   servicesProviders: Provider[] = [];
 
@@ -46,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProviders(){
-    this.prestadorService.listaPrestadores().subscribe(
+    this.prestadorService.searchProviders().subscribe(
       data => {
         this.treatListProviders(data)
       }
@@ -57,4 +59,18 @@ export class HomeComponent implements OnInit {
     this.servicesProviders.length = 0;
     this.servicesProviders = data?.content ? data.content : undefined;
   }
+
+  getFilteredProviders(){
+    let filters: Search = {};
+    filters.cidade = this.citySelected?.nome ? this.citySelected?.nome : undefined;
+    filters.categoria = this.categorySelected?.nome ? this.categorySelected?.nome : undefined;
+    filters.search = this.serviceSearch ? this.serviceSearch : undefined;
+    this.prestadorService.searchProviders(filters).subscribe(
+      (response:any) => {
+        this.treatListProviders(response)
+      }
+    )
+  }
+
+
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { take } from 'rxjs';
+import { Search } from 'src/app/interfaces/search';
 import { environment } from 'src/environments/environment';
 import { TokenService } from '../token/token.service';
 
@@ -9,25 +10,22 @@ import { TokenService } from '../token/token.service';
 })
 
 
-export class PrestadorService implements OnInit{
-
+export class PrestadorService{
   url = environment.apiURL;
 
-  constructor(private httpClient: HttpClient, private tokenService: TokenService) {
-  }
+  constructor(private httpClient: HttpClient, private tokenService: TokenService) {}
 
   showProfile: boolean = false;
-
-  ngOnInit(): void {
-
-  }
-
-  pesquisaPrestadores(tipoServico: string, filters:any ):any{
-   let params = new HttpParams().set('search', filters['search']).set('cidade', filters['cidade']).set('categoria', filters['categoria']);
-   return this.httpClient.get<any[]>(this.url+'prestadores/filtered/',{params: params});
-  }
-
-  listaPrestadores(){
+  searchProviders(filters?: Search){
+    if(filters){
+      let params = new HttpParams();
+      Object.entries(filters).forEach(([key,value]) => {
+        if(value && value != ''){
+          params = params.append(key, value);
+        }
+      })
+      return this.httpClient.get<any[]>(this.url+'prestadores/filtered/',{params: params});
+    }
     return this.httpClient.get<any[]>(this.url+'prestadores');
   }
 
