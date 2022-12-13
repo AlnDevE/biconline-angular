@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
+import { EventEmitterService } from 'src/app/utils/event-emitter.service';
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +11,9 @@ import { TokenService } from 'src/app/services/token/token.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(public tokenService:TokenService, private router: Router) { }
+  serviceDescription: any = new FormControl('');
+
+  constructor(public tokenService:TokenService, private router: Router, private event: EventEmitterService) { }
 
   ngOnInit(): void {
   }
@@ -19,4 +23,7 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  searchChange(){
+    this.event.get('search').emit(this.serviceDescription?.value);
+  }
 }
