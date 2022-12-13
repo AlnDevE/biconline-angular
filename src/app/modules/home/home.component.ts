@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   categorySelected: any;
   citySelected: any;
   serviceSearch: any;
-  subs: any = [];
+  subs: any;
 
   servicesProviders: Provider[] = [];
 
@@ -82,8 +82,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.array.forEach((element:any) => {
-      element.unsubscribe();
-    });
+    this.subs.unsubscribe();
   }
 }
