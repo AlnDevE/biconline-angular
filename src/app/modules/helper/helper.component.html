@@ -1,0 +1,14 @@
+<div class="header row">
+    <h1>Ajuda</h1>
+    <p>Dúvidas frequentes</p>
+</div>
+<div class="container">
+    <div class="col-9">
+        <p-accordion class="accordion" *ngFor="let help of helpList">
+            <p-accordionTab header="{{help.header}}" [selected]="help?.selected">
+                {{help.body}}
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>
+
