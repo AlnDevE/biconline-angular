@@ -38,7 +38,10 @@
               <li><a class="dropdown-item" (click)="logout()">Sair</a></li>
             </ul>
           </div>
-
+          <div class="text-end" *ngIf="!tokenService.possuiToken()">
+            <a routerLink="/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+            <a routerLink="/cadastros"><button type="button" class="btn btn-light">Sign-up</button></a>
+          </div>
 
         </ul>
       </div>
