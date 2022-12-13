@@ -9,7 +9,7 @@ import { AutenticacaoModule } from './interceptors/autenticacao.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
