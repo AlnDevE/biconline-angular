@@ -24,6 +24,7 @@ export class NavigationComponent implements OnInit {
   }
 
   searchChange(){
-    this.event.get('search').emit(this.serviceDescription?.value);
+    this.router.navigate(['home', this.serviceDescription?.value])
+    // this.event.get('search').emit(this.serviceDescription?.value);
   }
 }

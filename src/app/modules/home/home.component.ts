@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Category } from 'src/app/interfaces/category';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Provider } from 'src/app/interfaces/provider';
 import { Search } from 'src/app/interfaces/search';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
@@ -29,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(public tokenService: TokenService, public router: Router,
     public prestadorService: PrestadorService, private categoryService: CategoryService,
     private clienteService: ClienteService, private usuarioService: AutenticacaoUsuarioService,
-    private event: EventEmitterService) {
+    private event: EventEmitterService, private route: ActivatedRoute) {
 
       this.cities = [
         {nome: 'Mogi Mirim'},
@@ -39,10 +38,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         {nome: 'Limeira'}
     ];
 
-    this.subs = this.event.get('search').subscribe(
-      data => {
-        this.serviceSearch = data
-        this.getFilteredProviders();
+    this.route.params.subscribe((params: Params) =>
+      {
+      this.serviceSearch = params['search'] ? params['search'] : undefined;
+      this.getFilteredProviders();
       }
     );
   }
@@ -82,6 +81,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    if(this.subs){
+      this.subs.unsubscribe();
+    }
   }
 }

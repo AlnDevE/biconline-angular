@@ -9,7 +9,7 @@ const routes: Routes = [
     redirectTo: 'login'
   },
   {
-    path: 'home',
+    path: 'home/:search',
     canActivate: [AuthGuard],
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
