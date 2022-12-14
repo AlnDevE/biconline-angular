@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Category } from 'src/app/interfaces/category';
 import { Provider } from 'src/app/interfaces/provider';
 import { Search } from 'src/app/interfaces/search';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
@@ -38,12 +39,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         {nome: 'Limeira'}
     ];
 
-    this.route.params.subscribe((params: Params) =>
-      {
-      this.serviceSearch = params['search'] ? params['search'] : undefined;
-      this.getFilteredProviders();
+    this.route.queryParams.subscribe(
+      (params: Params)=>{
+        if(params){
+          this.serviceSearch = params['search'] ? params['search'] : undefined;
+          this.getFilteredProviders();
+        }
+        else{
+          this.getAllProviders();
+        }
       }
-    );
+    )
   }
 
   ngOnInit(): void {
@@ -52,7 +58,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.categories = data?.content;
       }
     )
-    this.getAllProviders();
   }
 
   getAllProviders(){
@@ -84,5 +89,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(this.subs){
       this.subs.unsubscribe();
     }
+
   }
 }
