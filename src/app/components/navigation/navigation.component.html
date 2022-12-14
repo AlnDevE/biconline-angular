@@ -24,7 +24,7 @@
             <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/help" routerLinkActive="active">Ajuda</a>
+            <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/help" routerLinkActive="active">Ajuda</a>
           </li>
           <!-- icone perfil  -->
           <div class="dropdown" *ngIf="tokenService.possuiToken()">
@@ -40,7 +40,7 @@
           </div>
           <div class="text-end" *ngIf="!tokenService.possuiToken()">
             <a routerLink="/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
-            <a routerLink="/cadastros"><button type="button" class="btn btn-light">Sign-up</button></a>
+            <a routerLink="/register"><button type="button" class="btn btn-light">Sign-up</button></a>
           </div>
 
         </ul>
