@@ -38,7 +38,7 @@
             </app-messages>
           </div>
 
-          <div class="form-floating mb-3">
+          <div *ngIf="tab == 'prestador'" class="form-floating mb-3">
             <input
             type="text"
             class="form-control"
@@ -102,7 +102,7 @@
             </app-messages>
           </div>
 
-          <button [disabled]="!userForm.valid" class="w-100 btn btn-lg btnLogin" (click)="onRegister()" type="submit">Login</button>
+          <button [disabled]="!userForm.valid" class="w-100 btn btn-lg btnLogin" (click)="onRegister()" type="submit">Cadastrar</button>
 
           <hr class="my-4">
         </div>

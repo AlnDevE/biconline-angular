@@ -16,10 +16,6 @@ export class RegisterClientsComponent implements OnInit {
   tab: string  = 'cliente';
   sexo: any[];
   cities: any[];
-  sexoSelected: any = undefined;
-  citySelected: any = undefined;
-
-  msgs1: Message[] = [];
 
   constructor(private formBuilder: FormBuilder, private userExists: UserExistsService) {
     this.sexo = [
@@ -36,14 +32,7 @@ export class RegisterClientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userForm = this.formBuilder.group({
-      nome: ['', [Validators.required]],
-      email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
-      telefone: ['', [Validators.required]],
-      cidade: ['', [Validators.required]],
-      sexo: ['', [Validators.required]],
-      senha: ['', [Validators.required]]
-    })
+    this.userForm = this.getTypeOfForm();
   }
 
   onRegister(){
@@ -54,6 +43,28 @@ export class RegisterClientsComponent implements OnInit {
   }
 
   changeTab(){
-    console.log("t")
+    this.tab = this.tab == 'prestador' ? 'cliente' : 'prestador'
+  }
+
+  getTypeOfForm(){
+    if(this.tab == 'cliente'){
+      return this.formBuilder.group({
+        nome: ['', [Validators.required]],
+        email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
+        cidade: ['', [Validators.required]],
+        sexo: ['', [Validators.required]],
+        senha: ['', [Validators.required]]
+      });
+    }
+    else{
+      return this.formBuilder.group({
+        nome: ['', [Validators.required]],
+        email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
+        telefone: ['', [Validators.required]],
+        cidade: ['', [Validators.required]],
+        sexo: ['', [Validators.required]],
+        senha: ['', [Validators.required]]
+      });
+    }
   }
 }
