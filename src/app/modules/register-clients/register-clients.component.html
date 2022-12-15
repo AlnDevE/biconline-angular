@@ -1,25 +1,109 @@
 
 <div class="col-md-10 mx-auto col-lg-5 mt-3">
-        <form class="p-4 p-md-5 border rounded-3 bg-light">
+        <div [formGroup]="userForm" class="p-4 p-md-5 border rounded-3 bg-light">
           <h1 class="h3 mb-3 fw-normal">BicoOn</h1>
 
           <div class="form-floating mb-4">
-            <input type="text" class="form-control" id="floatingName"name="nome" required>
+            <input
+            type="text"
+            class="form-control"
+            id="floatingName"
+            formControlName="nome"
+            >
             <label for="floatingName">Nome</label>
+            <app-messages
+            *ngIf="userForm.get('nome')?.errors && userForm.get('nome')?.touched"
+            mensagem="Nome é obrigatório"
+            >
+            </app-messages>
           </div>
 
           <div class="form-floating mb-4">
-            <input type="email" class="form-control" id="floatingEmail" name="email"required>
+            <input
+            type="email"
+            class="form-control"
+            id="floatingEmail"
+            formControlName="email"
+            >
             <label for="floatingEmail">Email</label>
+            <app-messages
+            *ngIf="userForm.get('email')?.errors?.required && userForm.get('email')?.touched"
+            mensagem="Email é obrigatório"
+            >
+            </app-messages>
+            <app-messages
+            *ngIf="userForm.get('email')?.errors?.userExists && userForm.get('email')?.touched"
+            mensagem="Email já cadastrado"
+            >
+            </app-messages>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+            type="text"
+            class="form-control"
+            id="floatingTel"
+            formControlName="telefone"
+            >
+            <label for="floatingTel">Telefone</label>
+            <app-messages
+            *ngIf="userForm.get('telefone')?.errors && userForm.get('telefone')?.touched"
+            mensagem="Telefone é obrigatório"
+            >
+            </app-messages>
+          </div>
+
+          <div class="selects">
+
+            <div class="select mb-3">
+              <select
+              formControlName="cidade"
+              class="form-select form-select-lg"
+              >
+                <option value="" disabled selected hidden>Selecione uma cidade</option>
+                <option *ngFor="let city of cities" [ngValue]="city.name">{{city.name}}</option>
+              </select>
+              <app-messages
+              *ngIf="userForm.get('cidade')?.errors && userForm.get('cidade')?.touched"
+              mensagem="Cidade é obrigatório"
+              >
+              </app-messages>
+            </div>
+
+            <div class="select mb-3">
+              <select
+              formControlName="sexo"
+              class="form-select form-select-lg"
+              >
+                <option value="" disabled selected hidden>Selecione seu sexo</option>
+                <option *ngFor="let sexo of sexo" [ngValue]="sexo.tipo">{{sexo.tipo}}</option>
+              </select>
+              <app-messages
+              *ngIf="userForm.get('sexo')?.errors && userForm.get('sexo')?.touched"
+              mensagem="Sexo é obrigatório"
+              >
+              </app-messages>
+            </div>
+
           </div>
 
           <div class="form-floating mb-4">
-            <input type="password" class="form-control" id="floatingpassword" name="password"required>
+            <input
+            type="password"
+            class="form-control"
+            id="floatingpassword"
+            formControlName="senha"
+            >
             <label for="floatingPassword">Senha</label>
+            <app-messages
+            *ngIf="userForm.get('senha')?.errors && userForm.get('senha')?.touched"
+            mensagem="Senha é obrigatório"
+            >
+            </app-messages>
           </div>
 
-          <button class="w-100 btn btn-lg btnLogin" (click)="onRegister()" type="submit">Login</button>
+          <button [disabled]="!userForm.valid" class="w-100 btn btn-lg btnLogin" (click)="onRegister()" type="submit">Login</button>
 
           <hr class="my-4">
-      </form>
+        </div>
 </div>

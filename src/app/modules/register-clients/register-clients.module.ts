@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterClientsRoutingModule } from './register-clients-routing.module';
 import { RegisterClientsComponent } from './register-clients.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
-import {MessagesModule} from 'primeng/messages';
+import { MessagesModule } from 'src/app/components/messages/messages.module';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import {MessagesModule} from 'primeng/messages';
     RegisterClientsRoutingModule,
     FormsModule,
     DropdownModule,
+    ReactiveFormsModule,
     MessagesModule
   ]
 })

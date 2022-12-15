@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Message} from 'primeng/api';
+import { UserForm } from 'src/app/interfaces/newUser';
+import { UserExistsService } from 'src/app/functions/user-exists.service';
 
 @Component({
   selector: 'app-register-clients',
@@ -8,22 +11,17 @@ import {Message} from 'primeng/api';
 })
 export class RegisterClientsComponent implements OnInit {
 
+  userForm!: FormGroup;
+
   tab: string  = 'cliente';
   sexo: any[];
   cities: any[];
   sexoSelected: any = undefined;
   citySelected: any = undefined;
 
-  nome: string ='';
-  email: string ='';
-  telefone: string ='';
-  senha: string = '';
-  cidade: string = '';
-  sexoText: string = '';
-
   msgs1: Message[] = [];
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder, private userExists: UserExistsService) {
     this.sexo = [
       {tipo: 'Masculino'},
       {tipo: 'Feminino'}
@@ -38,10 +36,21 @@ export class RegisterClientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      nome: ['', [Validators.required]],
+      email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
+      telefone: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
+      sexo: ['', [Validators.required]],
+      senha: ['', [Validators.required]]
+    })
   }
 
   onRegister(){
-    console.log("Teste")
+    if(this.userForm.valid){
+      const newUser = this.userForm.getRawValue() as UserForm;
+      console.log(newUser)
+    }
   }
 
   changeTab(){
