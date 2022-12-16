@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
-import { MessagesModule } from 'src/app/components/messages/messages.module';
+import { MessagesFormModule } from 'src/app/components/messages/messages.module';
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { MessagesModule } from 'src/app/components/messages/messages.module';
     CommonModule,
     LoginRoutingModule,
     FormsModule,
-    MessagesModule
+    MessagesFormModule
   ]
 })
 export class LoginModule { }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Message} from 'primeng/api';
 import { UserForm } from 'src/app/interfaces/newUser';
 import { UserExistsService } from 'src/app/functions/user-exists.service';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-register-clients',
@@ -13,11 +14,16 @@ export class RegisterClientsComponent implements OnInit {
 
   userForm!: FormGroup;
 
-  tab: string  = 'cliente';
+  tab: string  = 'clientes';
   sexo: any[];
   cities: any[];
+  msgs!: Message[];
 
-  constructor(private formBuilder: FormBuilder, private userExists: UserExistsService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userExists: UserExistsService,
+    private sharedService: SharedService
+    ){
     this.sexo = [
       {tipo: 'Masculino'},
       {tipo: 'Feminino'}
@@ -38,16 +44,22 @@ export class RegisterClientsComponent implements OnInit {
   onRegister(){
     if(this.userForm.valid){
       const newUser = this.userForm.getRawValue() as UserForm;
-      console.log(newUser)
+      this.sharedService.registerUser(newUser, this.tab).subscribe(
+        () => {
+          this.showSuccess();
+        },
+        (error)=> {
+          this.showError(error['error']['message']);
+        })
     }
   }
 
   changeTab(){
-    this.tab = this.tab == 'prestador' ? 'cliente' : 'prestador'
+    this.tab = this.tab == 'prestadores' ? 'clientes' : 'prestadores'
   }
 
   getTypeOfForm(){
-    if(this.tab == 'cliente'){
+    if(this.tab == 'clientes'){
       return this.formBuilder.group({
         nome: ['', [Validators.required]],
         email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
@@ -66,5 +78,17 @@ export class RegisterClientsComponent implements OnInit {
         senha: ['', [Validators.required]]
       });
     }
+  }
+
+  showSuccess() {
+    this.msgs = [
+        {severity:'success', summary:'Successo', detail:'Cadastrado com sucesso'}
+    ]
+  }
+
+  showError(msg: string){
+    this.msgs = [
+      {severity:'error', summary:'Erro', detail:msg}
+  ]
   }
 }

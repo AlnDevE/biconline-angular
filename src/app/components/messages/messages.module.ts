@@ -11,4 +11,4 @@ import { MessagesComponent } from './messages.component';
   ],
   exports:[MessagesComponent]
 })
-export class MessagesModule { }
+export class MessagesFormModule { }

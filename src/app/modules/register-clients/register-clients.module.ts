@@ -5,7 +5,9 @@ import { RegisterClientsRoutingModule } from './register-clients-routing.module'
 import { RegisterClientsComponent } from './register-clients.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
-import { MessagesModule } from 'src/app/components/messages/messages.module';
+import { MessagesFormModule } from 'src/app/components/messages/messages.module';
+import {MessageModule} from 'primeng/message';
+import {MessagesModule} from 'primeng/messages';
 
 
 @NgModule({
@@ -18,7 +20,10 @@ import { MessagesModule } from 'src/app/components/messages/messages.module';
     FormsModule,
     DropdownModule,
     ReactiveFormsModule,
-    MessagesModule
+    MessagesModule,
+    MessageModule,
+    MessagesFormModule
+
   ]
 })
 export class RegisterClientsModule { }
