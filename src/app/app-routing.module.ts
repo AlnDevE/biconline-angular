@@ -15,19 +15,28 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'help',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/helper/helper.module').then(m => m.HelperModule)
   },
   {
     path: 'start',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/start/start.module').then(m => m.StartModule)
   },
   {
     path: 'register',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/register-clients/register-clients.module').then(m => m.RegisterClientsModule)
+  },
+  {
+    path: 'solicitations',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/solicitations/solicitations.module').then(m => m.SolicitationsModule)
   }
 
 ];

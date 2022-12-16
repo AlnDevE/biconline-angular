@@ -24,6 +24,9 @@
             <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
+            <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/solicitations" routerLinkActive="active">Solicitações</a>
+          </li>
+          <li class="nav-item">
             <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/help" routerLinkActive="active">Ajuda</a>
           </li>
           <!-- icone perfil  -->
