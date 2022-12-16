@@ -4,6 +4,7 @@ import {Message} from 'primeng/api';
 import { UserForm } from 'src/app/interfaces/newUser';
 import { UserExistsService } from 'src/app/functions/user-exists.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-clients',
@@ -22,7 +23,8 @@ export class RegisterClientsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userExists: UserExistsService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private router: Router
     ){
     this.sexo = [
       {tipo: 'Masculino'},
@@ -47,6 +49,9 @@ export class RegisterClientsComponent implements OnInit {
       this.sharedService.registerUser(newUser, this.tab).subscribe(
         () => {
           this.showSuccess();
+          setTimeout(() => {
+            this.router.navigate(['/login'])
+          }, 3000);
         },
         (error)=> {
           this.showError(error['error']['message']);
@@ -82,7 +87,7 @@ export class RegisterClientsComponent implements OnInit {
 
   showSuccess() {
     this.msgs = [
-        {severity:'success', summary:'Successo', detail:'Cadastrado com sucesso'}
+        {severity:'success', summary:'Successo', detail:'Cadastrado com sucesso! Redirecionando...'}
     ]
   }
 
