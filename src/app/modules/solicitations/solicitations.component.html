@@ -8,7 +8,8 @@
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>Solicitação </th>
-                <th>Prestador</th>
+                <th *ngIf="user.tipo == 'Cliente'">Prestador</th>
+                <th *ngIf="user.tipo == 'Prestador'">Cliente</th>
                 <th>Descrição</th>
                 <th>Data</th>
                 <th>Status</th>
@@ -18,7 +19,8 @@
         <ng-template pTemplate="body" let-solicitation let-columns="columns">
             <tr>
                 <td>{{solicitation.id}}</td>
-                <td>{{solicitation.idPrestador}}</td>
+                <td *ngIf="user.tipo == 'Cliente'">{{solicitation.idPrestador}}</td>
+                <td *ngIf="user.tipo == 'Prestador'">{{solicitation.idCliente}}</td>
                 <td>{{solicitation.descricao}}</td>
                 <td>{{solicitation.data | customDate}}</td>
                 <td><span [class]="solicitation.status.toLowerCase() + ' badge'">{{solicitation.status}}</span></td>
