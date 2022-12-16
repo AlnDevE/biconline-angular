@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SolicitationsRoutingModule } from './solicitations-routing.module';
 import { SolicitationsComponent } from './solicitations.component';
+import {TableModule} from 'primeng/table';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { SolicitationsComponent } from './solicitations.component';
   ],
   imports: [
     CommonModule,
-    SolicitationsRoutingModule
+    SolicitationsRoutingModule,
+    TableModule,
+    FormsModule
   ]
 })
 export class SolicitationsModule { }
