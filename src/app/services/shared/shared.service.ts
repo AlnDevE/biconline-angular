@@ -15,4 +15,8 @@ export class SharedService {
   registerUser(userForm: UserForm, type: string){
     return this.httpClient.post(`${this.apiUrl}${type}`, userForm)
   }
+
+  get_solicitations(id: number, type: string){
+    return this.httpClient.get(`${this.apiUrl}solicitacoes/${type}/${id}`)
+  }
 }

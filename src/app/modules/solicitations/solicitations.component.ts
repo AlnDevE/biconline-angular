@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Solicitation } from 'src/app/interfaces/solicitation';
+import { UserInfo } from 'src/app/interfaces/userDecode';
+import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-solicitations',
@@ -8,7 +11,18 @@ import { Solicitation } from 'src/app/interfaces/solicitation';
 })
 export class SolicitationsComponent implements OnInit {
 
-  constructor() { }
+  user!: UserInfo;
+  path!: string;
+
+  constructor(private authUser: AutenticacaoUsuarioService, private sharedService: SharedService) {
+    this.authUser.retornaUsuarioLogado().subscribe(
+      (data: any) => {
+        this.user = data as UserInfo;
+        this.path = this.user.tipo == 'Cliente' ? 'clientes' : 'prestadores'
+      }
+    )
+  }
+
   selectedCustomer1!:any;
   solicitations: Solicitation[] = [
     {id:1, data:'15-12-2022',descricao:'Limpar encanação',idCliente: 2, idPrestador: 44, status: 'Resolvido'},
@@ -16,7 +30,17 @@ export class SolicitationsComponent implements OnInit {
     {id:334, data:'15-12-2022',descricao:'Limpar encanação',idCliente: 4, idPrestador: 70, status: 'Cancelado'},
     {id:12, data:'15-12-2022',descricao:'Limpar encanação',idCliente: 31, idPrestador: 67, status: 'Resolvido'}
   ]
+
   ngOnInit(): void {
+    this.get_all_solicitations(+this.user.id);
+  }
+
+  get_all_solicitations(id: number){
+    this.sharedService.get_solicitations(id, this.path).subscribe(
+      (data: any) =>{
+        this.solicitations = data as Solicitation[];
+      }
+    )
   }
 
 }
