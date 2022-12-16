@@ -1,3 +1,5 @@
+@import "~primeicons/primeicons.css";
+
 .header{
   padding-left: 14%;
   padding-top: 40px;
@@ -17,7 +19,6 @@
 .container{
   display: flex;
   justify-content: center;
-  padding-right: 15%;
   padding-bottom: 40px;
 }
 
@@ -46,3 +47,18 @@
   font-size: 12px;
   letter-spacing: .3px;
 }
+
+i{
+  font-family:'primeicons' !important;
+  cursor: pointer;
+}
+
+.btnDefault{
+  background-color: #41d3be;
+  color: white;
+}
+
+.btnWarn{
+  margin-left: 5%;
+}
+

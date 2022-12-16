@@ -7,11 +7,12 @@
       <p-table responsiveLayout="scroll" [value]="solicitations">
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th>Id Solicitação </th>
+                <th>Solicitação </th>
                 <th>Prestador</th>
-                <th>Descricao</th>
+                <th>Descrição</th>
                 <th>Data</th>
                 <th>Status</th>
+                <th>Ações</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-solicitation let-columns="columns">
@@ -21,6 +22,10 @@
                 <td>{{solicitation.descricao}}</td>
                 <td>{{solicitation.data | customDate}}</td>
                 <td><span [class]="solicitation.status.toLowerCase() + ' badge'">{{solicitation.status}}</span></td>
+                <td>
+                  <button class="btn btnDefault">Editar <i class="pi-pencil"></i></button>
+                  <button class="btn btnWarn"><img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt=""></button>
+                </td>
             </tr>
         </ng-template>
     </p-table>
