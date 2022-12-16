@@ -38,6 +38,11 @@
             mensagem="Email já cadastrado"
             >
             </app-messages>
+            <app-messages
+            *ngIf="userForm.get('email')?.errors?.email && userForm.get('email')?.touched"
+            mensagem="Email inválido"
+            >
+            </app-messages>
           </div>
 
           <div *ngIf="tab == 'prestadores'" class="form-floating mb-3">
@@ -49,7 +54,7 @@
             >
             <label for="floatingTel">Telefone</label>
             <app-messages
-            *ngIf="userForm.get('telefone')?.errors && userForm.get('telefone')?.touched"
+            *ngIf="userForm.get('telefone')?.errors?.required && userForm.get('telefone')?.touched"
             mensagem="Telefone é obrigatório"
             >
             </app-messages>

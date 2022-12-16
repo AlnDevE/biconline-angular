@@ -60,14 +60,15 @@ export class RegisterClientsComponent implements OnInit {
   }
 
   changeTab(){
-    this.tab = this.tab == 'prestadores' ? 'clientes' : 'prestadores'
+    this.tab = this.tab == 'prestadores' ? 'clientes' : 'prestadores';
+    this.userForm = this.getTypeOfForm();
   }
 
   getTypeOfForm(){
     if(this.tab == 'clientes'){
       return this.formBuilder.group({
         nome: ['', [Validators.required]],
-        email: ['', [Validators.required], [this.userExists.userExistsByEmail()]],
+        email: ['', [Validators.required, Validators.email], [this.userExists.userExistsByEmail()]],
         cidade: ['', [Validators.required]],
         sexo: ['', [Validators.required]],
         senha: ['', [Validators.required]]
