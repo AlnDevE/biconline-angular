@@ -18,5 +18,31 @@
   display: flex;
   justify-content: center;
   padding-right: 15%;
-  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.cancelada{
+  border-radius: 5px;
+  color: #c63737;
+  background-color: #FFCDD2;
+}
+
+.pendente{
+  border-radius: 5px;
+  color: #8a5340;
+  background-color: #FEEDAF;
+}
+
+.aceita{
+  color: #256029;
+  background-color: #C8E6C9;
+}
+
+.badge {
+  border-radius: 2px;
+  padding: 0.25em 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .3px;
 }

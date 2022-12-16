@@ -2,7 +2,7 @@
   <h1>Solicitações</h1>
 </div>
 <div class="container">
-  <div class="mx-auto col-lg-9 mt-3">
+  <div class="mx-auto col-lg-10 mt-3">
     <div class="card">
       <p-table responsiveLayout="scroll" [value]="solicitations">
         <ng-template pTemplate="header" let-columns>
@@ -20,7 +20,7 @@
                 <td>{{solicitation.idPrestador}}</td>
                 <td>{{solicitation.descricao}}</td>
                 <td>{{solicitation.data}}</td>
-                <td><span>{{solicitation.status}}</span></td>
+                <td><span [class]="solicitation.status.toLowerCase() + ' badge'">{{solicitation.status}}</span></td>
             </tr>
         </ng-template>
     </p-table>
