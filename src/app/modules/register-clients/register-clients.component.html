@@ -1,7 +1,9 @@
 
 <div class="col-md-10 mx-auto col-lg-5 mt-3">
         <div [formGroup]="userForm" class="p-4 p-md-5 border rounded-3 bg-light">
-          <h1 class="h3 mb-3 fw-normal">BicoOn</h1>
+
+          <h2 *ngIf="tab == 'clientes'" class="h3 mb-3 fw-normal">BicoOn</h2>
+          <h2 *ngIf="tab == 'prestadores'" class="sup-text fw-normal">BicoOn Para Prestadores</h2>
 
           <div class="form-floating mb-4">
             <input
@@ -105,5 +107,10 @@
           <button [disabled]="!userForm.valid" class="w-100 btn btn-lg btnLogin" (click)="onRegister()" type="submit">Cadastrar</button>
 
           <hr class="my-4">
+
+          <small *ngIf="tab == 'clientes'" class="text-muted inf-text">Mostre seu trabalho. <a href="javascript:void(0);" (click)="changeTab()">Cadastre se como um prestador</a></small>
+
+          <small *ngIf="tab == 'prestadores'" class="text-muted inf-text">Já tem uma conta? <a [routerLink]="['/login']">Faça Login</a></small>
+
         </div>
 </div>
