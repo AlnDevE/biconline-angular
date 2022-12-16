@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
-import { EventEmitterService } from 'src/app/utils/event-emitter.service';
+import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.service';
 
 @Component({
   selector: 'app-navigation',

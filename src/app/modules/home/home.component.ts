@@ -8,7 +8,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { PrestadorService } from 'src/app/services/prestador/prestador.service';
 import { TokenService } from 'src/app/services/token/token.service';
-import { EventEmitterService } from 'src/app/utils/event-emitter.service';
+import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.service';
 
 @Component({
   selector: 'app-home',

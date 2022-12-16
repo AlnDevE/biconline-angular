@@ -5,11 +5,13 @@ import { SolicitationsRoutingModule } from './solicitations-routing.module';
 import { SolicitationsComponent } from './solicitations.component';
 import {TableModule} from 'primeng/table';
 import { FormsModule } from '@angular/forms';
+import { CustomDatePipe } from 'src/app/utils/date/custom.datepipe';
 
 
 @NgModule({
   declarations: [
-    SolicitationsComponent
+    SolicitationsComponent,
+    CustomDatePipe
   ],
   imports: [
     CommonModule,

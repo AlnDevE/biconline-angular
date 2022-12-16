@@ -19,7 +19,7 @@
                 <td>{{solicitation.id}}</td>
                 <td>{{solicitation.idPrestador}}</td>
                 <td>{{solicitation.descricao}}</td>
-                <td>{{solicitation.data}}</td>
+                <td>{{solicitation.data | customDate}}</td>
                 <td><span [class]="solicitation.status.toLowerCase() + ' badge'">{{solicitation.status}}</span></td>
             </tr>
         </ng-template>
