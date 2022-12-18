@@ -57,9 +57,9 @@ export class PrestadorService{
     })
   }
 
-  uploadImage(image: File, id: any){
+  uploadImage(image: File, id: any, fileName: string){
     const formData = new FormData();
-    formData.append('file', image, image.name);
+    formData.append('file', image, fileName);
     return this.httpClient.post(`${this.url}prestadores/upload/${id}`, formData,{
       headers: {'Content-Type': 'file'}
     });
