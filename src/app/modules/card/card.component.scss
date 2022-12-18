@@ -22,7 +22,7 @@
     width: 97%;
     height: 60%;
     background: rgba(207, 207, 207, 0.3);
-    border-radius: 5px;
+    border-radius: 10px;
     justify-self: center;
     align-items: center;
     justify-content: center;
@@ -76,4 +76,8 @@
 
 .card:hover{
     border-color: aqua;
+}
+
+img{
+  border-radius: 10px;
 }

@@ -2,8 +2,8 @@
 <div class="row card-container">
     <div (click)="showProfile(provider)" class="card" *ngFor="let provider of servicesProviders">
         <div class="img-container">
-          <img *ngIf="provider.pathPhoto" width="90%" height="90%" src="{{pathGetImages + provider.pathPhoto}}" alt="">
-          <p *ngIf="!provider.pathPhoto">WITHOUT PHOTO</p>
+          <img *ngIf="provider.pathPhoto" width="98%" height="98%" src="{{pathGetImages + provider.pathPhoto}}" alt="">
+          <img *ngIf="!provider.pathPhoto" width="98%" height="98%" src="../../../assets/images/default-img.png" alt="">
         </div>
         <div style="margin-top: 7%;"></div>
         <div class="divisor"></div>
