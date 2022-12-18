@@ -20,7 +20,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     if(this.tokenService.possuiToken()){
         const token =  this.tokenService.retornaToken();
         const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
        })
     req = req.clone({headers})

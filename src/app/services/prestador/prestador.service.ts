@@ -56,4 +56,12 @@ export class PrestadorService{
       descricao: form['descricao']
     })
   }
+
+  uploadImage(image: File, id: any){
+    const formData = new FormData();
+    formData.append('file', image, image.name);
+    return this.httpClient.post(`${this.url}prestadores/upload/${id}`, formData,{
+      headers: {'Content-Type': 'file'}
+    });
+  }
 }

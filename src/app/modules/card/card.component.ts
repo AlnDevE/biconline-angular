@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Provider } from 'src/app/interfaces/provider';
 import { PrestadorService } from 'src/app/services/prestador/prestador.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -13,6 +14,8 @@ export class CardComponent implements OnInit {
   servicesProviders: any[] = [];
 
   prestadorView: any = {};
+
+  pathGetImages: String = `${environment.apiURL}prestadores/images/users/`;
 
   constructor(public prestadorService: PrestadorService) { }
 

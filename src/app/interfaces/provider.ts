@@ -12,5 +12,6 @@ export interface Provider{
     avaliacao?: Rating
     servico?: Office[],
     categoriaPrincipal?: String,
-    descricaoPrincipal?: String
+    descricaoPrincipal?: String,
+    pathPhoto?: String
 }
