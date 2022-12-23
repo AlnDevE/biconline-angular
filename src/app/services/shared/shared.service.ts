@@ -19,4 +19,13 @@ export class SharedService {
   get_solicitations(id: number, type: string){
     return this.httpClient.get(`${this.apiUrl}solicitacoes/${type}/${id}`)
   }
+
+  getInfoById(id: number, type: string){
+    return this.httpClient.get(
+      `${this.apiUrl}${this.getTypeUrl(type)}s/${id}`)
+  }
+
+  getTypeUrl(type:string){
+    return type == 'Cliente' ? type.toLocaleLowerCase() : `${type.toLocaleLowerCase()}e`
+  }
 }

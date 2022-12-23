@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<div class="container">
+  <div class="mx-auto col-lg-9">
+    <div class="card">
+      <div class="first">
+        <div class="img-container"></div>
+        <p class="name">{{user.nome.toUpperCase()}}</p>
+      </div>
+      <div class="second">
+        <button class="edit btn btnEdit">Editar Informações</button>
+        <div class="infos">
+          <p class="card-text">SERVIÇOS CONTRATADOS: 0</p>
+          <p class="card-text">Email {{user.email}}</p>
+          <p class="card-text">Cidade {{user.cidade}}</p>
+          <p class="card-text">Sexo {{user.sexo}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
