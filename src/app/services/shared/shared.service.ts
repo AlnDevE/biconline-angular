@@ -16,6 +16,10 @@ export class SharedService {
     return this.httpClient.post(`${this.apiUrl}${type}`, userForm)
   }
 
+  attUser(userForm: any, type: string,  id: Number){
+    return this.httpClient.patch(`${this.apiUrl}${this.getTypeUrl(type)}s/${id}`, userForm)
+  }
+
   get_solicitations(id: number, type: string){
     return this.httpClient.get(`${this.apiUrl}solicitacoes/${type}/${id}`)
   }

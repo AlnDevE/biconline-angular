@@ -1,17 +1,46 @@
 <div class="container">
   <div class="mx-auto col-lg-9">
-    <div class="card">
+    <p-toast></p-toast>
+    <div class="loader-card" *ngIf="loading"><p-progressSpinner></p-progressSpinner></div>
+    <div class="card" *ngIf="!loading">
       <div class="first">
         <div class="img-container"></div>
         <p class="name">{{user.nome.toUpperCase()}}</p>
       </div>
       <div class="second">
-        <button class="edit btn btnEdit">Editar Informações</button>
+        <button *ngIf="userForm.disabled" class="edit btn btnEdit" (click)="formControlEnabled()">Editar Informações</button>
+        <button *ngIf="userForm.enabled" class="edit btn btnEdit" (click)="saveChanges()">Salvar</button>
         <div class="infos">
           <p class="card-text">SERVIÇOS CONTRATADOS: 0</p>
-          <p class="card-text">Email {{user.email}}</p>
-          <p class="card-text">Cidade {{user.cidade}}</p>
-          <p class="card-text">Sexo {{user.sexo}}</p>
+          <form [formGroup]="userForm">
+            <label for="floatingEmail">Email</label>
+            <input
+              type="email"
+              class="form-control defaultSize"
+              id="floatingEmail"
+              formControlName="email"
+            >
+
+            <label for="floatingCidade">Cidade</label>
+            <select
+              id="floatingCidade"
+              formControlName="cidade"
+              class="form-select form-select-lg defaultSize"
+              >
+                <option>Selecione uma cidade</option>
+                <option *ngFor="let city of cities" [ngValue]="city.name">{{city.name}}</option>
+            </select>
+
+            <label for="floatingSexo">Sexo</label>
+            <select
+            formControlName="sexo"
+            class="form-select form-select-lg defaultSize"
+            >
+              <option>Selecione seu sexo</option>
+              <option *ngFor="let sexo of sexo" [ngValue]="sexo.tipo">{{sexo.tipo}}</option>
+            </select>
+
+          </form>
         </div>
       </div>
     </div>

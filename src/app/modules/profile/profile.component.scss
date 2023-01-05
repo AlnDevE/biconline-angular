@@ -1,9 +1,9 @@
 .card{
+  display: flex;
+  flex-direction: row;
   margin-top: 50px;
   background-color: white;
   height: 450px;
-  display: flex;
-  flex-direction: row;
 }
 
 .first{
@@ -73,3 +73,20 @@ p{
   margin-left: 5%;
   padding: 1.5%;
 }
+
+.defaultSize{
+  height: 48px;
+  width: 90%;
+  font-size: medium;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loader-card{
+  display: flex;
+  margin-top: 50px;
+  background-color: white;
+  height: 450px;
+  align-items: center;
+  justify-content: center;
+}
+
