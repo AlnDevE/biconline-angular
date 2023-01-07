@@ -32,7 +32,8 @@
           <!-- icone perfil  -->
           <div class="dropdown" *ngIf="tokenService.possuiToken()">
             <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle profileimage" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="32" height="32" class="rounded-circle me-2">
+              <img *ngIf="user?.pathPhoto" src="{{pathGetImages + user?.pathPhoto}}" alt="" width="32" height="32" class="rounded-circle me-2">
+              <img *ngIf="!user?.pathPhoto" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="32" height="32" class="rounded-circle me-2">
             </a>
             <ul class="dropdown-menu dropdown-menu-ligth text-small shadow">
               <li><a class="dropdown-item" routerLink="/profile">Perfil</a></li>

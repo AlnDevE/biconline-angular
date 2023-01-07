@@ -4,7 +4,8 @@
     <div class="loader-card" *ngIf="loading"><p-progressSpinner></p-progressSpinner></div>
     <div class="card" *ngIf="!loading">
       <div class="first">
-        <div class="img-container"></div>
+        <div class="img-container" *ngIf="!user.pathPhoto"></div>
+        <img class="img-container" *ngIf="user.pathPhoto" src="{{pathGetImages + user.pathPhoto}}" alt="">
         <p class="name">{{user.nome.toUpperCase()}}</p>
       </div>
       <div class="second">

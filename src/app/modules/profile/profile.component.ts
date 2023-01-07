@@ -5,6 +5,7 @@ import { finalize, first, map, mergeMap, pipe } from 'rxjs';
 import { GenericUser } from 'src/app/interfaces/genericUser';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   sexo!: any[];
   cities!: any[];
   loading: boolean = false;
+  pathGetImages: String = `${environment.apiURL}prestadores/images/users/`;
 
   constructor(
     private authService: AutenticacaoUsuarioService,

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GenericUser } from 'src/app/interfaces/genericUser';
 import { TokenService } from 'src/app/services/token/token.service';
 import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -12,8 +14,17 @@ import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.se
 export class NavigationComponent implements OnInit {
 
   serviceDescription: any = new FormControl('');
+  user!: any;
+  pathGetImages: String = `${environment.apiURL}prestadores/images/users/`;
 
-  constructor(public tokenService:TokenService, private router: Router, private event: EventEmitterService) { }
+  constructor(public tokenService:TokenService, private router: Router, private event: EventEmitterService) {
+    this.event.get('user').subscribe(
+      () =>{
+        let userToParse = localStorage.getItem('user');
+        this.user = userToParse ? JSON.parse(userToParse) : undefined;
+      }
+    )
+  }
 
   ngOnInit(): void {
   }

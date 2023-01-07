@@ -2,16 +2,16 @@ import { Office } from "./office";
 import { Rating } from "./rating";
 
 export interface GenericUser{
-    id: Number,
-    nome: String,
-    email: String,
-    cidade: String,
-    sexo: String,
-    telefone: String,
-    disponivel: Boolean,
+    id: number,
+    nome: string,
+    email: string,
+    cidade: string,
+    sexo: string,
+    telefone: string,
+    disponivel: boolean,
     avaliacao?: Rating
     servico?: Office[],
-    categoriaPrincipal?: String,
-    descricaoPrincipal?: String,
-    pathPhoto?: String
+    categoriaPrincipal?: string,
+    descricaoPrincipal?: string,
+    pathPhoto?: string
 }
