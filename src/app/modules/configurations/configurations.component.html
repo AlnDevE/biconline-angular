@@ -1,0 +1,17 @@
+<div class="header row">
+  <h1>Configurações</h1>
+</div>
+<div class="container">
+  <div class="item">
+    <p>Alterar Senha</p>
+    <img width="37px" height="37px" src="../../../assets/images/icons/chave.png">
+  </div>
+  <div *ngIf="user.tipo == 'Prestador'" class="item">
+    <p>Alterar visibilidade do perfil</p>
+    <img width="37px" height="37px" src="../../../assets/images/icons/visibilidade.png">
+  </div>
+  <div *ngIf="user.tipo == 'Prestador'" class="item">
+    <p>Alterar serviços cadastrados</p>
+    <img width="37px" height="37px" src="../../../assets/images/icons/pranchetas.png">
+  </div>
+</div>
