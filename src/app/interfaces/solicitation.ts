@@ -3,6 +3,7 @@ export interface Solicitation{
   idCliente: number,
   idPrestador: number,
   descricao: string,
-  data: string,
-  status: string
+  data: Date,
+  status: string,
+  edit?: boolean
 }

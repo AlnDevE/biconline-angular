@@ -1,6 +1,7 @@
 <div class="header row">
   <h1>Solicitações</h1>
 </div>
+<p-toast></p-toast>
 <div class="container">
   <div class="mx-auto col-lg-10 mt-3">
     <div class="card">
@@ -21,11 +22,43 @@
                 <td>{{solicitation.id}}</td>
                 <td *ngIf="user.tipo == 'Cliente'">{{solicitation.idPrestador}}</td>
                 <td *ngIf="user.tipo == 'Prestador'">{{solicitation.idCliente}}</td>
-                <td>{{solicitation.descricao}}</td>
-                <td>{{solicitation.data | customDate}}</td>
-                <td><span [class]="solicitation.status.toLowerCase() + ' badge'">{{solicitation.status}}</span></td>
+
                 <td>
-                  <button class="btn btnDefault">Editar <i class="pi-pencil"></i></button>
+                  <input class="form-control" type="text"
+                  [(ngModel)]="solicitation.descricao"
+                  [disabled]="solicitation.edit">
+                </td>
+
+                <td>
+                  <input *ngIf="!solicitation.edit"
+                  class="form-control"
+                  type="datetime-local"
+                  [(ngModel)]="solicitation.data"
+                  [disabled]="solicitation.edit">
+                  <div *ngIf="solicitation.edit">
+                    {{solicitation.data}}
+                  </div>
+                </td>
+
+                <td>
+                  <span *ngIf="solicitation.edit" [class]="solicitation.status.toLowerCase() + ' badge'" >{{solicitation.status}}</span>
+                  <select class="form-select" *ngIf="!solicitation.edit" [(ngModel)]="solicitation.status">
+                    <option *ngFor="let item of status" [value]="item.name" >{{item.name}}</option>
+                  </select>
+                </td>
+
+                <td>
+                  <button
+                    *ngIf="solicitation.edit"
+                    class="btn btnDefault" (click)="onEdit(solicitation)">Editar
+                    <i class="pi-pencil"></i>
+                  </button>
+                  <button
+                    *ngIf="!solicitation.edit"
+                    class="btn btnDefault"
+                    (click)="onSave(solicitation)">Salvar
+                    <i class="pi-pencil"></i>
+                  </button>
                   <button class="btn btnWarn"><img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt=""></button>
                 </td>
             </tr>

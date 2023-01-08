@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserForm } from 'src/app/interfaces/newUser';
+import { Solicitation } from 'src/app/interfaces/solicitation';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -39,5 +40,13 @@ export class SharedService {
     return this.httpClient.post(`${this.apiUrl}${this.getTypeUrl(type)}s/upload/${id}`, formData,{
       headers: {'Content-Type': 'file'}
     });
+  }
+
+  putSolicitations(id: any, solicitation: Solicitation){
+    return this.httpClient.put(`${this.apiUrl}solicitacoes/update/${solicitation.id}/${id}`,{
+      'descricao': solicitation.descricao,
+      'status': solicitation.status,
+      'data': solicitation.data
+    })
   }
 }
