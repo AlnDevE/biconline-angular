@@ -20,13 +20,15 @@ export class NavigationComponent implements OnInit {
   constructor(public tokenService:TokenService, private router: Router, private event: EventEmitterService) {
     this.event.get('user').subscribe(
       () =>{
-        let userToParse = localStorage.getItem('user');
-        this.user = userToParse ? JSON.parse(userToParse) : undefined;
+        this.getUserLocalStorage();
       }
     )
   }
 
   ngOnInit(): void {
+    if(this.tokenService.possuiToken()){
+      this.getUserLocalStorage();
+    }
   }
 
   logout():void{
@@ -36,5 +38,10 @@ export class NavigationComponent implements OnInit {
 
   searchChange(){
     this.router.navigate(['home'], {queryParams: {search:  this.serviceDescription?.value}})
+  }
+
+  getUserLocalStorage(){
+    let userToParse = localStorage.getItem('user');
+    this.user = userToParse ? JSON.parse(userToParse) : undefined;
   }
 }

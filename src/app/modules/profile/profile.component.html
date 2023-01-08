@@ -4,26 +4,85 @@
     <div class="loader-card" *ngIf="loading"><p-progressSpinner></p-progressSpinner></div>
     <div class="card" *ngIf="!loading">
       <div class="first">
-        <div class="img-container" *ngIf="!user.pathPhoto"></div>
+        <p>Informações do Perfil</p>
+        <img class="img-container" *ngIf="!user.pathPhoto" src="../../../assets/images/default-img.png" alt="">
         <img class="img-container" *ngIf="user.pathPhoto" src="{{pathGetImages + user.pathPhoto}}" alt="">
-        <p class="name">{{user.nome.toUpperCase()}}</p>
+        <div class="selectImg" *ngIf="userInfo.tipo == 'Prestador'">
+          <input #imageInput
+          class="form-control form-control-sm" type="file" name="file"
+          enctype="multipart/form-data" (change)="onSelectFile($event)"
+          accept="image/*"
+          [disabled]="userForm.disabled"
+          >
+        </div>
       </div>
       <div class="second">
         <button *ngIf="userForm.disabled" class="edit btn btnEdit" (click)="formControlEnabled()">Editar Informações</button>
         <button *ngIf="userForm.enabled" class="edit btn btnEdit" (click)="saveChanges()">Salvar</button>
         <div class="infos">
-          <p class="card-text">SERVIÇOS CONTRATADOS: 0</p>
           <form [formGroup]="userForm">
-            <label for="floatingEmail">Email</label>
-            <input
-              type="email"
-              class="form-control defaultSize"
-              id="floatingEmail"
-              formControlName="email"
-            >
 
-            <label for="floatingCidade">Cidade</label>
-            <select
+            <div class="two">
+              <div>
+                <label for="floatingName">Nome</label>
+                <input
+                type="text"
+                class="form-control defaultSize"
+                id="floatingName"
+                formControlName="nome"
+                >
+                <app-messages
+                *ngIf="userForm.get('nome')?.errors && userForm.get('nome')?.touched"
+                mensagem="Nome é obrigatório"
+                >
+                </app-messages>
+              </div>
+
+              <div>
+                <label for="floatingEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control defaultSize"
+                  id="floatingEmail"
+                  formControlName="email"
+                >
+                <app-messages
+                *ngIf="userForm.get('email')?.errors?.required && userForm.get('email')?.touched"
+                mensagem="Email é obrigatório"
+                >
+                </app-messages>
+                <app-messages
+                *ngIf="userForm.get('email')?.errors?.userExists && userForm.get('email')?.touched"
+                mensagem="Email já cadastrado"
+                >
+                </app-messages>
+                <app-messages
+                *ngIf="userForm.get('email')?.errors?.email && userForm.get('email')?.touched"
+                mensagem="Email inválido"
+                >
+                </app-messages>
+              </div>
+            </div>
+
+
+            <div *ngIf="userInfo.tipo == 'Prestador'">
+              <label for="floatingTelefone">Telefone</label>
+              <input
+                type="telefone"
+                class="form-control defaultSize"
+                id="floatingTelefone"
+                formControlName="telefone"
+              >
+              <app-messages
+              *ngIf="userForm.get('telefone')?.errors?.required && userForm.get('telefone')?.touched"
+              mensagem="Telefone é obrigatório"
+              >
+              </app-messages>
+            </div>
+
+            <div>
+              <label for="floatingCidade">Cidade</label>
+              <select
               id="floatingCidade"
               formControlName="cidade"
               class="form-select form-select-lg defaultSize"
@@ -31,15 +90,28 @@
                 <option>Selecione uma cidade</option>
                 <option *ngFor="let city of cities" [ngValue]="city.name">{{city.name}}</option>
             </select>
+            <app-messages
+              *ngIf="userForm.get('cidade')?.errors && userForm.get('cidade')?.touched"
+              mensagem="Cidade é obrigatório"
+              >
+            </app-messages>
+            </div>
 
-            <label for="floatingSexo">Sexo</label>
-            <select
-            formControlName="sexo"
-            class="form-select form-select-lg defaultSize"
-            >
-              <option>Selecione seu sexo</option>
-              <option *ngFor="let sexo of sexo" [ngValue]="sexo.tipo">{{sexo.tipo}}</option>
-            </select>
+            <div>
+              <label for="floatingSexo">Sexo</label>
+              <select
+              formControlName="sexo"
+              class="form-select form-select-lg defaultSize"
+              >
+                <option>Selecione seu sexo</option>
+                <option *ngFor="let sexo of sexo" [ngValue]="sexo.tipo">{{sexo.tipo}}</option>
+              </select>
+              <app-messages
+              *ngIf="userForm.get('sexo')?.errors && userForm.get('sexo')?.touched"
+              mensagem="Sexo é obrigatório"
+              >
+              </app-messages>
+            </div>
 
           </form>
         </div>

@@ -6,6 +6,9 @@ import { GenericUser } from 'src/app/interfaces/genericUser';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { environment } from 'src/environments/environment';
+import { UserExistsService } from 'src/app/functions/user-exists.service';
+import { UserInfo } from 'src/app/interfaces/userDecode';
+
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +19,9 @@ export class ProfileComponent implements OnInit {
 
   user!: GenericUser;
   userForm!: FormGroup;
-  tipo: string = 'Cliente'
+  userInfo!: UserInfo;
+  tipo: string = 'Cliente';
+  filer!: File;
   sexo!: any[];
   cities!: any[];
   loading: boolean = false;
@@ -26,14 +31,9 @@ export class ProfileComponent implements OnInit {
     private authService: AutenticacaoUsuarioService,
     private sharedService: SharedService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userExists: UserExistsService
     ){
-      this.userForm = this.formBuilder.group({
-        nome: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        cidade: ['', [Validators.required]],
-        sexo: ['', [Validators.required]],
-      });
       this.sexo = [
         {tipo: 'MASCULINO'},
         {tipo: 'FEMININO'}
@@ -48,12 +48,12 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.userInfo = this.getUser();
+    this.defineForm();
     this.loading = true;
-    this.authService.retornaUsuarioLogado().pipe(
-      mergeMap(userInfo => this.sharedService.getInfoById(
-        userInfo['id'] as number, userInfo['tipo'] as string
-      ))
-    ).pipe(first(),finalize(()=> this.loading = false)).subscribe(
+    this.sharedService.getInfoById(this.userInfo.id, this.userInfo.tipo).pipe(
+      first(),finalize(()=> this.loading = false)
+    ).subscribe(
       (data:any) =>{
         this.user = data as GenericUser;
         this.setUserOnForm(this.user)
@@ -69,6 +69,9 @@ export class ProfileComponent implements OnInit {
       cidade: userData.cidade,
       sexo: userData.sexo,
     })
+    if(this.userInfo.tipo == 'Prestador'){
+      this.userForm.patchValue({telefone: userData.telefone})
+    }
   }
 
   formControlEnabled(){
@@ -77,21 +80,33 @@ export class ProfileComponent implements OnInit {
 
   saveChanges(){
     this.loading = true;
+    if(this.userInfo.tipo == 'Prestador'){
+      this.onUpload();
+    }
     if(this.userForm.valid){
       this.authService.retornaUsuarioLogado().pipe(
         mergeMap(userInfo => this.sharedService.attUser(
           this.userForm.getRawValue(), userInfo['tipo'] as string, this.user.id
           )
         )
-      ).pipe(first(), finalize(()=> this.loading = false)).subscribe(
+      ).pipe(first(), finalize(
+        ()=> {
+          this.loading = false;
+        }
+      )
+        ).subscribe(
         () =>{
           this.showSuccess();
           this.userForm.disable();
         },
         () =>{
-          this.showError();
+          this.showError('Erro ao atualizar dados!');
         }
       )
+    }
+    else{
+      this.showError('Dados Inválidos');
+      this.loading = false;
     }
   }
 
@@ -99,8 +114,51 @@ export class ProfileComponent implements OnInit {
     this.messageService.add({severity:'success', summary:'Successo', detail:'Dados atualizados com sucesso!'});
   }
 
-  showError(){
-    this.messageService.add({severity:'error', summary:'Erro', detail:'Erro ao atualizar dados!'});
+  showError(msg: string){
+    this.messageService.add({severity:'error', summary:'Erro', detail: msg});
   }
 
+  defineForm(){
+    if(this.userInfo.tipo == 'Cliente'){
+      this.userForm = this.formBuilder.group({
+        nome: ['', [Validators.required]],
+        email: ['', [Validators.required], [this.userExists.userExistsByEmailExcludingCurrent(this.userInfo.id)]],
+        cidade: ['', [Validators.required]],
+        sexo: ['', [Validators.required]]
+      });
+    }
+    else{
+      this.userForm = this.formBuilder.group({
+        nome: ['', [Validators.required]],
+        email: ['', [Validators.required], [this.userExists.userExistsByEmailExcludingCurrent(this.userInfo.id)]],
+        telefone: ['', [Validators.required]],
+        cidade: ['', [Validators.required]],
+        sexo: ['', [Validators.required]]
+      });
+    }
+  }
+
+  getUser(){
+    let userToParse = localStorage.getItem('userinfo');
+    return userToParse ? JSON.parse(userToParse) : undefined
+  }
+
+  onSelectFile(event:any){
+    this.filer = <File>event.target.files[0];
+  }
+
+  onUpload(){
+    var fileNameHashed = this.generateHashName(40, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    this.sharedService.uploadImage(this.userInfo.id, this.userInfo.tipo ,this.filer, fileNameHashed).subscribe(
+      (event:any) =>{
+        console.log(event)
+      }
+    );
+  }
+
+  generateHashName(length: number, chars: string) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+  }
 }

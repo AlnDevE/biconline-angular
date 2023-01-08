@@ -25,6 +25,7 @@ export class AutenticacaoUsuarioService {
     const token = this.tokenService.retornaToken();
     const usuario = jwt_decode(token) as Usuario;
     this.user = usuario;
+    localStorage.setItem('userinfo', JSON.stringify(usuario))
     this.usuarioSubject.next(usuario);
   }
 
@@ -46,7 +47,7 @@ export class AutenticacaoUsuarioService {
     this.tokenService.removeToken();
     this.user = {};
     this.usuarioSubject.next({});
-
+    localStorage.clear();
   }
 
   estaLogado(){

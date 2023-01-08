@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { MessagesFormModule } from 'src/app/components/messages/messages.module';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    MessagesFormModule,
+    FileUploadModule
   ],
   providers:[MessageService]
 })

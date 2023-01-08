@@ -32,4 +32,12 @@ export class SharedService {
   getTypeUrl(type:string){
     return type == 'Cliente' ? type.toLocaleLowerCase() : `${type.toLocaleLowerCase()}e`
   }
+
+  uploadImage(id: any, type: string, image: File, fileName: string){
+    const formData = new FormData();
+    formData.append('file', image, fileName);
+    return this.httpClient.post(`${this.apiUrl}${this.getTypeUrl(type)}s/upload/${id}`, formData,{
+      headers: {'Content-Type': 'file'}
+    });
+  }
 }

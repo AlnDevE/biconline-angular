@@ -14,4 +14,8 @@ export class ValidatorsService {
   verifyUserExistsByEmail(email:string){
     return this.httpClient.get(`${this.urlApi}validators/email/${email}`)
   }
+
+  verifyUserExistsByEmailExcludingCurrent(id: number, email:string){
+    return this.httpClient.get(`${this.urlApi}validators/put/email/${id}/${email}`)
+  }
 }

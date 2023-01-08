@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { first, mergeMap } from 'rxjs';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
 import { AutenticacaoService } from 'src/app/services/autenticacao/autenticacao.service';
-import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { TokenService } from 'src/app/services/token/token.service';
 import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.service';

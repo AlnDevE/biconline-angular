@@ -22,4 +22,18 @@ export class UserExistsService {
       );
     };
   }
+
+  userExistsByEmailExcludingCurrent(id: number) {
+    return (control: AbstractControl) => {
+      return control.valueChanges.pipe(
+        switchMap((userEmail) =>
+          this.validatorsService.verifyUserExistsByEmailExcludingCurrent(id, userEmail)
+        ),
+        map((usuarioExiste) =>
+          usuarioExiste ? { userExists: true } : null
+        ),
+        first()
+      );
+    };
+  }
 }
