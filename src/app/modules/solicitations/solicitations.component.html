@@ -30,19 +30,16 @@
                 </td>
 
                 <td>
-                  <input *ngIf="!solicitation.edit"
+                  <input
                   class="form-control"
                   type="datetime-local"
                   [(ngModel)]="solicitation.data"
                   [disabled]="solicitation.edit">
-                  <div *ngIf="solicitation.edit">
-                    {{solicitation.data}}
-                  </div>
                 </td>
 
                 <td>
                   <span *ngIf="solicitation.edit" [class]="solicitation.status.toLowerCase() + ' badge'" >{{solicitation.status}}</span>
-                  <select class="form-select" *ngIf="!solicitation.edit" [(ngModel)]="solicitation.status">
+                  <select class="form-select" *ngIf="!solicitation.editStatus" [(ngModel)]="solicitation.status">
                     <option *ngFor="let item of status" [value]="item.name" >{{item.name}}</option>
                   </select>
                 </td>

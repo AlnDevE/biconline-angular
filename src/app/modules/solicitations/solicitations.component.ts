@@ -50,18 +50,22 @@ export class SolicitationsComponent implements OnInit {
   }
 
   treatData(data: any){
-    this.solicitations = data.map((element: any) =>{
-      let datePipe = new DatePipe("en-US");
+    this.solicitations = data.map((element: Solicitation) =>{
       element.edit = true;
-      element.data = datePipe.transform(element.data, "dd/MM/yyyy HH:mm");
+      element.editStatus = true;
       return element;
     })
   }
 
   onEdit(solicitation: Solicitation){
-    this.solicitations = this.solicitations.map((element:any)=>{
+    this.solicitations = this.solicitations.map((element: Solicitation)=>{
       if(element.id == solicitation.id){
-        element.edit = false;
+        if(element.status == 'Pendente' || this.user.tipo == 'Cliente'){
+          element.edit = true
+        }
+        else{
+          element.editStatus = false;
+        }
       }
       return element;
     })
