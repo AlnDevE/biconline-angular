@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card.component';
 import { ViewProfileModule } from '../dynamic-view-profile/view-profile.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { ViewProfileModule } from '../dynamic-view-profile/view-profile.module';
   ],
   imports: [
     CommonModule,
-    ViewProfileModule
+    ViewProfileModule,
+    RouterModule
   ],
   exports: [CardComponent]
 })

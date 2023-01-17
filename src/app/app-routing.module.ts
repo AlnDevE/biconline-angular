@@ -40,6 +40,10 @@ const routes: Routes = [
   {
     path: 'configurations',
     loadChildren: () => import('./modules/configurations/configurations.module').then(m => m.ConfigurationsModule)
+  },
+  {
+    path: 'view-provider/:id',
+    loadChildren: () => import('./modules/view-provider/view-provider.module').then(m => m.ViewProviderModule)
   }
 
 ];

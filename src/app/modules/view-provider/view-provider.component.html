@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="mx-auto col-lg-9">
+    <div class="card">
+      <div class="info">
+
+        <div class="photo" >
+          <img class="img-container" *ngIf="!provider.pathPhoto" src="../../../assets/images/default-img.png" alt="">
+          <img class="img-container" *ngIf="provider.pathPhoto" src="{{pathGetImages + provider.pathPhoto}}" alt="">
+          <p class="description">{{provider.nome.toUpperCase()}}</p>
+        </div>
+
+        <div class="infoP" >
+          <p class="description">Cidade {{provider.cidade}}</p>
+          <p class="description">Email {{provider.email}}</p>
+          <p class="description">Telefone {{provider.telefone}}</p>
+        </div>
+
+        <div class="rating" >
+          <p class="description">Avaliação</p>
+          <p-rating class="stars" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+          <p class="dRating">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto labore cum, quos nobis expedita, provident veritatis iusto illum tempora pariatur sapiente quasi. Dolorem eius, illum odio cumque accusantium esse excepturi!</p>
+        </div>
+
+      </div>
+      <div class="line"></div>
+      <div class="cInfo">
+        <div class="coments">
+          <p class="description">Comentários</p>
+          <div class="coments-container">
+            <div class="img-c">
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="29" height="29" class="rounded-circle me-2">
+              <p>Nome</p>
+            </div>
+            <p>Servico muito bom</p>
+          </div>
+        </div>
+        <div class="get">
+          <div class="ipt">
+            <span>Selecione uma data</span>
+            <input class="sDate" type="date">
+          </div>
+          <div class="ipt">
+            <textarea placeholder="Descreva aqui o que voce precisa" id="inputDescricao" rows="2" cols="36"  pInputTextarea ></textarea>
+          </div>
+          <div class="button">
+            <button [disabled]="true" class="btn btnConfirm">Solicitar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
