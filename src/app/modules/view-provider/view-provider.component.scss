@@ -2,7 +2,7 @@
   display: flex;
   margin-top: 30px;
   background-color: white;
-  height: 570px;
+  height: auto;
 }
 
 .info{
@@ -92,7 +92,8 @@
 .coments-container{
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  padding-left: 20px;
+  margin: 4px;
 }
 
 .img-c{
@@ -128,8 +129,4 @@
 
 h5{
   margin-left: 10px;
-}
-
-.ntComents{
-  padding-left: 3%;
 }

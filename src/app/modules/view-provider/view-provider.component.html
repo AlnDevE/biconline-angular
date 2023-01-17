@@ -1,7 +1,7 @@
 <div class="container">
   <p-toast></p-toast>
   <div class="mx-auto col-lg-9">
-    <div class="card">
+    <div class="card mb-5">
       <div class="info">
 
         <div class="photo" >
@@ -33,13 +33,19 @@
           <p class="description">Comentários</p>
           <div class="ntComents" *ngIf="coments.length == 0">Esse prestador ainda não possui comentários</div>
 
-          <div *ngIf="coments.length > 0" class="coments-container">
-            <div class="img-c">
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="29" height="29" class="rounded-circle me-2">
-              <p>Nome</p>
+          <div *ngIf="coments.length > 0">
+            <div *ngFor="let coment of coments" class="coments-container">
+              <div class="img-c">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="29" height="29" class="rounded-circle me-2">
+                <div>
+                  <span>{{coment?.nomeCliente}}</span>
+                  <span style="padding-left: 10px;">{{coment?.data}}</span>
+                </div>
+              </div>
+              <p style="padding-left: 6%;">{{coment?.comentario}}</p>
             </div>
-            <p>Servico muito bom</p>
           </div>
+
         </div>
         <div class="get" [formGroup]="formSolicitation">
           <div class="ipt input-group">
