@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans:wght@700&display=swap');
+
 .card{
   display: flex;
   margin-top: 30px;
@@ -26,9 +28,9 @@
   height: 100%;
   width: 33.33%;
   display: flex;
-  justify-content: space-around;
   align-items: flex-start;
   flex-direction: column;
+  margin-top: 1%;
 }
 
 .rating{
@@ -129,4 +131,36 @@
 
 h5{
   margin-left: 10px;
+}
+
+.alignText{
+  display: flex;
+  img{
+    margin-top: 2%;
+    margin-right: 4px;
+  }
+  p{
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    color: #808080;
+  }
+}
+
+.categoryItem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #198474;
+  border-radius: 10px;
+  min-width: 50px;
+  max-width: 90px;
+  height: 30px;
+  margin-bottom: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.imgInfo{
+  padding-right: 4%;
+  cursor: pointer;
 }

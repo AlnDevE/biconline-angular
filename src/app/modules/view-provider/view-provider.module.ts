@@ -6,6 +6,7 @@ import { ViewProviderComponent } from './view-provider.component';
 import { RatingModule } from 'primeng/rating';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToastModule } from 'primeng/toast';
     RatingModule,
     ReactiveFormsModule,
     ToastModule,
-    FormsModule
+    FormsModule,
+    TooltipModule
   ]
 })
 export class ViewProviderModule { }

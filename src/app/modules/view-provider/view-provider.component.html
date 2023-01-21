@@ -2,69 +2,93 @@
   <p-toast></p-toast>
   <div class="mx-auto col-lg-9">
     <div class="card mb-5">
-      <div class="info">
+      <div *ngIf="provider">
+        <div class="info">
 
-        <div class="photo" >
-          <img class="img-container" *ngIf="!provider?.pathPhoto" src="../../../assets/images/default-img.png" alt="">
-          <img class="img-container" *ngIf="provider.pathPhoto" src="{{pathGetImages + provider.pathPhoto}}" alt="">
-          <p class="description">{{provider.nome.toUpperCase()}}</p>
-        </div>
-
-        <div class="infoP" >
-          <p class="description">Cidade {{provider.cidade}}</p>
-          <p class="description">Email {{provider.email}}</p>
-          <p class="description">Telefone {{provider.telefone}}</p>
-        </div>
-
-        <div class="rating" >
-          <p class="description">Avaliação</p>
-          <div class="stars">
-            <p-rating [ngModel]="rating" class="stars" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
-            <h5>{{rating.toFixed(1)}}</h5>
+          <div class="photo">
+            <img class="img-container" *ngIf="!provider?.pathPhoto" src="../../../assets/images/default-img.png" alt="">
+            <img class="img-container" *ngIf="provider && provider.pathPhoto" src="{{pathGetImages + provider.pathPhoto}}" alt="">
+            <p class="description">{{provider.nome.toUpperCase()}}</p>
           </div>
-          <p class="dRating">{{ratingMessage}}</p>
-        </div>
 
-      </div>
-      <div class="line"></div>
-
-      <div class="cInfo">
-        <div class="coments">
-          <p class="description">Comentários</p>
-          <div class="ntComents" *ngIf="coments.length == 0">Esse prestador ainda não possui comentários</div>
-
-          <div *ngIf="coments.length > 0">
-            <div *ngFor="let coment of coments" class="coments-container">
-              <div class="img-c">
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="29" height="29" class="rounded-circle me-2">
-                <div>
-                  <span>{{coment?.nomeCliente}}</span>
-                  <span style="padding-left: 10px;">{{coment?.data}}</span>
-                </div>
-              </div>
-              <p style="padding-left: 6%;">{{coment?.comentario}}</p>
+          <div class="infoP" >
+            <div class="imgInfo d-flex align-self-end flex-column">
+              <img pTooltip="Para saber mais informações sobre os serviços prestados passe o mouse sobre as categorias." width="30px" height="30px" src="../../../assets/images/icons/info.png" alt="">
             </div>
+            <div class="d-flex alignText">
+              <img width="20px" height="20px" src="../../../assets/images/icons/localizacao.png" alt="">
+              <p>{{provider.cidade}}</p>
+            </div>
+            <div class="d-flex alignText">
+              <img width="20px" height="20px" src="../../../assets/images/icons/email.png" alt="">
+              <p>{{provider.email}}</p>
+            </div>
+            <div class="d-flex alignText">
+              <img width="20px" height="20px" src="../../../assets/images/icons/telephone-call.png" alt=""><p class="card-text"></p>
+              <p>{{provider.telefone}}</p>
+            </div>
+
+            <div class="d-flex align-self-center flex-column">
+              <h6>Categorias atendidas</h6>
+            </div>
+            <div>
+              <div class="d-flex" *ngFor="let item of categories">
+                <div class="categoryItem" pTooltip="{{item.descricao}}">{{item.categoria}}</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="rating" >
+            <p class="description">Avaliação</p>
+            <div class="stars">
+              <p-rating [ngModel]="rating" class="stars" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+              <h5>{{rating.toFixed(1)}}</h5>
+            </div>
+            <p class="dRating">{{ratingMessage}}</p>
           </div>
 
         </div>
-        <div class="get" [formGroup]="formSolicitation">
-          <div class="ipt input-group">
-            <label for="lbDate" class="input-group-text">Selecione uma data</label>
-            <input
-            formControlName="data" class="sDate form-control"
-            (change)="onChange()" type="datetime-local"
-            >
+        <div class="line"></div>
+
+        <div class="cInfo">
+          <div class="coments">
+            <p class="description">Comentários</p>
+            <div class="ntComents" *ngIf="coments.length == 0">Esse prestador ainda não possui comentários</div>
+
+            <div *ngIf="coments.length > 0">
+              <div *ngFor="let coment of coments" class="coments-container">
+                <div class="img-c">
+                  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="29" height="29" class="rounded-circle me-2">
+                  <div>
+                    <span>{{coment?.nomeCliente}}</span>
+                    <span style="padding-left: 10px;">{{coment?.data}}</span>
+                  </div>
+                </div>
+                <p style="padding-left: 6%;">{{coment?.comentario}}</p>
+              </div>
+            </div>
+
           </div>
-          <div class="ipt">
-            <textarea
-              formControlName="descricao" class="form-control"
-              (keydown)="onChange()" placeholder="Descreva aqui o que voce precisa"
-              id="inputDescricao" rows="2" cols="36"
-              pInputTextarea >
-            </textarea>
-          </div>
-          <div class="button">
-            <button [disabled]="!sendSolicitation" (click)="onSubmit()" type="submit" class="btn btnConfirm">Solicitar</button>
+          <div class="get" [formGroup]="formSolicitation">
+            <div class="ipt input-group">
+              <label for="lbDate" class="input-group-text">Selecione uma data</label>
+              <input
+              formControlName="data" class="sDate form-control"
+              (change)="onChange()" type="datetime-local"
+              >
+            </div>
+            <div class="ipt">
+              <textarea
+                formControlName="descricao" class="form-control"
+                (keydown)="onChange()" placeholder="Descreva aqui o que voce precisa"
+                id="inputDescricao" rows="2" cols="36"
+                pInputTextarea >
+              </textarea>
+            </div>
+            <div class="button">
+              <button [disabled]="!sendSolicitation" (click)="onSubmit()" type="submit" class="btn btnConfirm">Solicitar</button>
+            </div>
           </div>
         </div>
       </div>

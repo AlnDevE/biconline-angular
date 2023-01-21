@@ -24,6 +24,7 @@ export class ViewProviderComponent implements OnInit {
   sendSolicitation: boolean = false;
   formSolicitation!: FormGroup;
   ratingMessage!: string;
+  categories!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,7 @@ export class ViewProviderComponent implements OnInit {
         this.coments = responses.rating.avaliacoes;
         this.rating = responses.rating.mediaNota;
         this.ratingMessage = getRatingMessages(this.rating);
+        this.treatCategories();
       }
     )
   }
@@ -67,6 +69,15 @@ export class ViewProviderComponent implements OnInit {
         }
       )
     }
+  }
+
+  treatCategories(){
+    this.categories = this.provider?.servico?.map((servico:any)=>{
+      return {
+        categoria: servico?.categoria?.nome,
+        descricao: servico?.descricao
+      };
+    })
   }
 
   showSuccess(){
