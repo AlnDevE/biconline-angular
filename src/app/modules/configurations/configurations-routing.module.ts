@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: ConfigurationsComponent
+  },
+  {
+    path: 'changes-passwords',
+    loadChildren: () => import('./change-pass/change-pass.module').then(m => m.ChangePassModule)
   }
 ];
 
