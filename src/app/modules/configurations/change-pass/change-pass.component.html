@@ -3,30 +3,55 @@
     <form [formGroup]="form">
       <div class="form-floating mb-4">
         <input
-        type="text"
+        type="password"
         class="form-control"
-        id="floatingName"
+        id="floatOld"
         formControlName="old"
         >
-        <label for="floatingName">Senha antiga</label>
+        <label for="floatOld">Senha antiga</label>
+        <app-messages
+            *ngIf="form.get('old')?.errors?.required && form.get('old')?.touched"
+            mensagem="Campo obrigatório"
+            >
+        </app-messages>
       </div>
       <div class="form-floating mb-4">
         <input
-        type="text"
+        type="password"
         class="form-control"
-        id="floatingName"
+        id="floatNew"
         formControlName="current"
         >
-        <label for="floatingName">Nova senha</label>
+        <label for="floatNew">Nova senha</label>
+        <app-messages
+            *ngIf="form.get('current')?.touched && form.get('current')?.errors?.nomatch"
+            mensagem="Senhas devem ser iguais"
+            >
+        </app-messages>
+        <app-messages
+            *ngIf="form.get('current')?.errors?.required && form.get('current')?.touched"
+            mensagem="Campo obrigatório"
+            >
+        </app-messages>
       </div>
       <div class="form-floating mb-4">
         <input
-        type="text"
+        type="password"
         class="form-control"
-        id="floatingName"
+        id="floatReplicate"
         formControlName="currentReplicate"
         >
-        <label for="floatingName">Repita nova senha</label>
+        <label for="floatReplicate">Repita nova senha</label>
+        <app-messages
+            *ngIf="form.get('currentReplicate')?.touched && form.get('currentReplicate')?.errors?.nomatch"
+            mensagem="Senhas devem ser iguais"
+            >
+        </app-messages>
+        <app-messages
+            *ngIf="form.get('currentReplicate')?.errors?.required && form.get('currentReplicate')?.touched"
+            mensagem="Campo obrigatório"
+            >
+        </app-messages>
       </div>
       <button [disabled]="!form.valid" class="w-100 btn btn-lg btnSave" (click)="onSaveChanges()" type="submit">Salvar</button>
     </form>

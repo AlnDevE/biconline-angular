@@ -29,7 +29,19 @@ export class ChangePassComponent implements OnInit {
   }
 
   onSaveChanges(){
-    console.log(this.form.value)
+    if(this.verifyPassword()){
+      this.form.get('current')?.setErrors({'nomatch': true})
+      this.form.get('currentReplicate')?.setErrors({'nomatch': true})
+      return
+    }
+    if(this.form.valid){
+      console.log(this.form.value)
+    }
+
+  }
+
+  verifyPassword(){
+    return this.form.get('current')?.value != this.form.get('currentReplicate')?.value;
   }
 
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChangePassRoutingModule } from './change-pass-routing.module';
 import { ChangePassComponent } from './change-pass.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MessagesFormModule } from 'src/app/components/messages/messages.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ChangePassRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MessagesFormModule
   ]
 })
 export class ChangePassModule { }
