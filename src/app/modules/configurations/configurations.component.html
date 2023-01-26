@@ -6,9 +6,12 @@
     <p>Alterar Senha</p>
     <img width="37px" height="37px" src="../../../assets/images/icons/chave.png">
   </div>
-  <div *ngIf="user.tipo == 'Prestador'" class="item">
-    <p>Alterar visibilidade do perfil</p>
-    <img width="37px" height="37px" src="../../../assets/images/icons/visibilidade.png">
+  <div *ngIf="user.tipo == 'Prestador'" [formGroup]="formAvailable" class="item">
+    <p>Visibilidade do perfil</p>
+    <div class="form-check form-switch selectSwitch">
+      <input class="form-check-input" (change)="setAvailable()" type="checkbox" formControlName="available">
+    </div>
+    <!-- <img width="37px" height="37px" src="../../../assets/images/icons/visibilidade.png"> -->
   </div>
   <div *ngIf="user.tipo == 'Prestador'" class="item">
     <p>Alterar serviços cadastrados</p>

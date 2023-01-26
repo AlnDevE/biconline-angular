@@ -64,4 +64,8 @@ export class PrestadorService{
       headers: {'Content-Type': 'file'}
     });
   }
+
+  putAvailable(available: boolean, id: any){
+    return this.httpClient.put(`${this.url}prestadores/${id}/disponibilidade`,{disponivel: available})
+  }
 }
