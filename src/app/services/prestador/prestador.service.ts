@@ -29,12 +29,8 @@ export class PrestadorService{
     return this.httpClient.get<any[]>(this.url+'prestadores');
   }
 
-  cadastroServico(userForm: any){
-    return this.httpClient.put(this.url+'prestadores/'+userForm['id']+'/servicos',
-    {
-      descricao: userForm['descricao'],
-      categoria: userForm['categoria']
-    })
+  registerService(id: number, serviceForm: any){
+    return this.httpClient.put(`${this.url}prestadores/${id}/servicos`,serviceForm)
   }
 
   findById(id: any):any{

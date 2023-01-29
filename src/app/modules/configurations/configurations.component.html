@@ -13,8 +13,8 @@
     </div>
     <!-- <img width="37px" height="37px" src="../../../assets/images/icons/visibilidade.png"> -->
   </div>
-  <div *ngIf="user.tipo == 'Prestador'" class="item">
-    <p>Alterar serviços cadastrados</p>
+  <div *ngIf="user.tipo == 'Prestador'" class="item" [routerLink]="'/services'">
+    <p>Serviços cadastrados</p>
     <img width="37px" height="37px" src="../../../assets/images/icons/pranchetas.png">
   </div>
 </div>

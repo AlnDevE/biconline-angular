@@ -1,0 +1,22 @@
+<div class="col-md-10 mx-auto col-lg-4 mt-3">
+  <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
+    <h5>Cadastro de serviço</h5>
+    <form [formGroup]="form" class="form-container">
+      <div class="mb-4 mt-4">
+        <label for="category" class="form-label">Categoria</label>
+        <p-dropdown [style]="{'width':'100%'}"
+          inputId="category" [options]="categories" class="mb-4"
+          placeholder="Selecione uma categoria" optionLabel="nome"
+          [showClear]="true" formControlName="categoria">
+        </p-dropdown>
+      </div>
+      <div class="mb-4">
+        <label for="description" class="form-label">Descrição</label>
+        <textarea formControlName="descricao" class="form-control" id="description" rows="3"></textarea>
+      </div>
+    </form>
+    <div>
+      <button [disabled]="form.invalid" (click)="register()" class="btn btn-d">Cadastrar</button>
+    </div>
+  </div>
+</div>
