@@ -6,6 +6,7 @@ import { NewServiceComponent } from './new-service.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessagesFormModule } from 'src/app/components/messages/messages.module';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MessagesFormModule } from 'src/app/components/messages/messages.module'
     NewServiceRoutingModule,
     DropdownModule,
     ReactiveFormsModule,
-    MessagesFormModule
+    MessagesFormModule,
+    TooltipModule
   ]
 })
 export class NewServiceModule { }

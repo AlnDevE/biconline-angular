@@ -17,6 +17,7 @@ export class NewServiceComponent implements OnInit {
   categories!: Category[];
   form!: FormGroup;
   user!: UserInfo;
+  description: string = 'Descreva o serviço usando palavras chaves, por ex: Limpeza de...'
 
   constructor(
     private categoryService: CategoryService,

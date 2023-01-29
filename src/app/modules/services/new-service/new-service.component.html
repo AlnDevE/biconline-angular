@@ -1,6 +1,9 @@
 <div class="col-md-10 mx-auto col-lg-4 mt-3">
   <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
-    <h5>Cadastro de serviço</h5>
+    <div class="d-flex flex-row">
+      <h5>Cadastro de serviço</h5>
+      <img pTooltip="As informações dos serviços serão utilizadas em resultados de buscas, e podem ser consultadas por clientes." width="30px" height="30px" src="../../../assets/images/icons/info.png" alt="">
+    </div>
     <form [formGroup]="form" class="form-container">
       <div class="mb-4 mt-4">
         <label for="category" class="form-label">Categoria</label>
@@ -16,7 +19,7 @@
       </div>
       <div class="mb-4">
         <label for="description" class="form-label">Descrição</label>
-        <textarea formControlName="descricao" class="form-control" id="description" rows="3"></textarea>
+        <textarea formControlName="descricao" class="form-control" id="description" rows="3" [placeholder]="description"></textarea>
         <app-messages
           *ngIf="form.get('descricao')?.errors?.required && form.get('descricao')?.touched"
           mensagem="Descricao é obrigatório">
