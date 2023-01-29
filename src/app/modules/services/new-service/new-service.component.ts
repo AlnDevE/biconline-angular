@@ -45,7 +45,7 @@ export class NewServiceComponent implements OnInit {
   setForm(){
     this.form = this.formBuilder.group({
       categoria: ['', Validators.required],
-      descricao: ['', Validators.required]
+      descricao: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(20)]]
     })
   }
 

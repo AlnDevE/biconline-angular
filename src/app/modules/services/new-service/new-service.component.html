@@ -9,10 +9,26 @@
           placeholder="Selecione uma categoria" optionLabel="nome"
           [showClear]="true" formControlName="categoria">
         </p-dropdown>
+        <app-messages
+          *ngIf="form.get('categoria')?.errors?.required && form.get('categoria')?.touched"
+          mensagem="Categoria é obrigatório">
+        </app-messages>
       </div>
       <div class="mb-4">
         <label for="description" class="form-label">Descrição</label>
         <textarea formControlName="descricao" class="form-control" id="description" rows="3"></textarea>
+        <app-messages
+          *ngIf="form.get('descricao')?.errors?.required && form.get('descricao')?.touched"
+          mensagem="Descricao é obrigatório">
+        </app-messages>
+        <app-messages
+          *ngIf="form.get('descricao')?.errors?.minlength && form.get('descricao')?.touched"
+          mensagem="tamanho mínimo de 10 caracteres">
+        </app-messages>
+        <app-messages
+          *ngIf="form.get('descricao')?.errors?.maxlength && form.get('descricao')?.touched"
+          mensagem="tamanho máximo de 20 caracteres">
+        </app-messages>
       </div>
     </form>
     <div>
