@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MessagesFormModule } from 'src/app/components/messages/messages.module';
 
 
@@ -14,7 +14,7 @@ import { MessagesFormModule } from 'src/app/components/messages/messages.module'
   imports: [
     CommonModule,
     LoginRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     MessagesFormModule
   ]
 })

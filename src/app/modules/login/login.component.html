@@ -6,21 +6,32 @@
     </div>
 
       <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light" (submit)="login()">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" [formGroup]="form" (submit)="login()">
           <h1 class="h3 mb-3 fw-normal">Biconline</h1>
           <div class="form-floating mb-4">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  [(ngModel)]="usuario" name="usuario" required #username="ngModel">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="usuario">
             <label for="floatingInput">Email</label>
-            <app-messages *ngIf="username.invalid && username.touched"
+            <app-messages
+              *ngIf="form.get('usuario')?.errors?.required && form.get('usuario')?.touched"
               mensagem="email é obrigatório">
             </app-messages>
           </div>
           <div class="form-floating mb-4">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="senha" name="senha"
-            required #password="ngModel">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+            formControlName="senha">
             <label for="floatingPassword">Senha</label>
-            <app-messages *ngIf="password.invalid && password.touched"
+            <app-messages
+              *ngIf="form.get('senha')?.errors?.required && form.get('senha')?.touched"
               mensagem="senha é obrigatório">
+            </app-messages>
+            <app-messages
+              *ngIf="form.get('senha')?.errors?.nomatch"
+              mensagem="usuário ou senha inválidos">
+            </app-messages>
+            <app-messages
+              *ngIf="form.get('senha')?.errors?.internal"
+              mensagem="erro ao fazer login, tente novamente">
             </app-messages>
           </div>
           <button class="w-100 btn btn-lg btnLogin" type="submit">Login</button>

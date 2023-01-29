@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, mergeMap } from 'rxjs';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
@@ -14,28 +15,36 @@ import { EventEmitterService } from 'src/app/utils/eventEmitter/event-emitter.se
 })
 export class LoginComponent implements OnInit {
 
-  usuario: string = '';
-  senha: string = '';
+  form!: FormGroup;
 
   constructor(private authService: AutenticacaoService,
      public tokenService: TokenService,
      private authUsuarioService: AutenticacaoUsuarioService,
      private router: Router,
      private sharedService: SharedService,
-     private event: EventEmitterService) { }
+     private event: EventEmitterService,
+     private formBuilder: FormBuilder
+    ) {
+      this.form = this.formBuilder.group({
+        usuario: ['', [Validators.required]],
+        senha: ['', [Validators.required]]
+      })
+    }
 
   ngOnInit(): void {
   }
 
   login(){
-    this.authService.realizaLogin(this.usuario,this.senha).subscribe(
+    this.authService.realizaLogin(this.form.get('usuario')?.value,this.form.get('senha')?.value).pipe(
+      first()
+    ).subscribe(
       (data:any) => {
         this.tokenService.salvaToken(data['token']);
         this.setInfoOnLocalStorage();
         this.router.navigate(['/home']);
       },
       (error:any) => {
-        console.log(error);
+        this.showError(error);
       }
     )
   }
@@ -50,5 +59,13 @@ export class LoginComponent implements OnInit {
         this.event.get('user').emit()
       }
     )
+  }
+
+  showError(error:any){
+    if(error?.status == 400){
+      this.form.get('senha')?.setErrors({'nomatch': true})
+    }else{
+      this.form.get('senha')?.setErrors({'internal': true})
+    }
   }
 }
