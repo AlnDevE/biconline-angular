@@ -111,6 +111,6 @@ export class NewOfficeComponent implements OnInit {
   timing(url: string){
     setTimeout(() => {
       this.router.navigate([url])
-    }, 2500);
+    }, 1700);
   }
 }
