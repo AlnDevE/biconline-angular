@@ -1,17 +1,19 @@
 <div class="col-md-10 mx-auto col-lg-4 mt-3">
   <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
     <div class="d-flex flex-row">
-      <h5>Cadastro de serviço</h5>
+      <h5 *ngIf="!params">Cadastro de serviço</h5>
+      <h5 *ngIf="params">Editar serviço</h5>
       <img pTooltip="As informações dos serviços serão utilizadas em resultados de buscas, e podem ser consultadas por clientes." width="30px" height="30px" src="../../../assets/images/icons/info.png" alt="">
     </div>
     <form [formGroup]="form" class="form-container">
       <div class="mb-4 mt-4">
         <label for="category" class="form-label">Categoria</label>
-        <p-dropdown [style]="{'width':'100%'}"
-          inputId="category" [options]="categories" class="mb-4"
-          placeholder="Selecione uma categoria" optionLabel="nome"
-          [showClear]="true" formControlName="categoria">
-        </p-dropdown>
+        <select
+          formControlName="categoria"
+          class="form-select form-select-lg defaultSize">
+          <option>Selecione uma categoria</option>
+          <option *ngFor="let item of categories" [ngValue]="item.nome">{{item.nome}}</option>
+        </select>
         <app-messages
           *ngIf="form.get('categoria')?.errors?.required && form.get('categoria')?.touched"
           mensagem="Categoria é obrigatório">
@@ -35,7 +37,9 @@
       </div>
     </form>
     <div>
-      <button [disabled]="form.invalid" (click)="register()" class="btn btn-d">Cadastrar</button>
+      <button *ngIf="!params" [disabled]="form.invalid" (click)="register()" class="btn btn-d">Cadastrar</button>
+      <button *ngIf="params" [disabled]="form.invalid" (click)="updateOffice()" class="btn btn-d">Atualizar</button>
     </div>
   </div>
+  <p-toast></p-toast>
 </div>

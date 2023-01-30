@@ -64,4 +64,16 @@ export class PrestadorService{
   putAvailable(available: boolean, id: any){
     return this.httpClient.put(`${this.url}prestadores/${id}/disponibilidade`,{disponivel: available})
   }
+
+  getServices(id: any){
+    return this.httpClient.get<any>(`${this.url}prestadores/${id}/servicos`);
+  }
+
+  updateOffice(idOffice: any, office: any){
+    return this.httpClient.put(`${this.url}servicos/${idOffice}`, office)
+  }
+
+  deleteOffice(idOffice: any){
+    return this.httpClient.delete(`${this.url}servicos/${idOffice}`)
+  }
 }

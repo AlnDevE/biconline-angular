@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NewServiceRoutingModule } from './new-service-routing.module';
-import { NewServiceComponent } from './new-service.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessagesFormModule } from 'src/app/components/messages/messages.module';
 import { TooltipModule } from 'primeng/tooltip';
+import { NewOfficeComponent } from './new-office.component';
+import { NewOfficeRoutingModule } from './new-office-routing.module';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
   declarations: [
-    NewServiceComponent
+    NewOfficeComponent
   ],
   imports: [
     CommonModule,
-    NewServiceRoutingModule,
     DropdownModule,
+    NewOfficeRoutingModule,
     ReactiveFormsModule,
     MessagesFormModule,
-    TooltipModule
+    TooltipModule,
+    ToastModule
   ]
 })
-export class NewServiceModule { }
+export class NewOfficeModule { }

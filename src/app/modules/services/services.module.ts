@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ServicesRoutingModule } from './services-routing.module';
 import { ServicesComponent } from './services.component';
+import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { ServicesComponent } from './services.component';
   ],
   imports: [
     CommonModule,
-    ServicesRoutingModule
+    ServicesRoutingModule,
+    RouterModule,
+    ToastModule
   ]
 })
 export class ServicesModule { }

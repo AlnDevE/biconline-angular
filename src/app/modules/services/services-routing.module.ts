@@ -7,8 +7,12 @@ const routes: Routes = [
     path: '',
     component: ServicesComponent
   },{
-    path:'news-services',
-    loadChildren: () => import('./new-service/new-service.module').then(m => m.NewServiceModule)
+    path:'offices',
+    loadChildren: () => import('./offices/new-office.module').then(m => m.NewOfficeModule)
+  },
+  {
+    path:'offices/:id',
+    loadChildren: () => import('./offices/new-office.module').then(m => m.NewOfficeModule)
   }
 ];
 
