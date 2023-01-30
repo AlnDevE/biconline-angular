@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { first } from 'rxjs';
 import { Office } from 'src/app/interfaces/office';
 import { UserInfo } from 'src/app/interfaces/userDecode';
@@ -9,7 +10,8 @@ import { PrestadorService } from 'src/app/services/prestador/prestador.service';
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+  styleUrls: ['./services.component.scss'],
+  providers: [MessageService]
 })
 export class ServicesComponent implements OnInit {
 
@@ -19,7 +21,8 @@ export class ServicesComponent implements OnInit {
   constructor(
     private localStorageService: LocalStorageService,
     private prestadorService: PrestadorService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.user = this.localStorageService.getUser();
    }
@@ -49,9 +52,18 @@ export class ServicesComponent implements OnInit {
       first()
     ).subscribe({
       next: () => {
+        this.showSuccess('Serviço deletado com sucesso!');
         this.getServices();
       },
-      error: () => console.log('deu ruim')
+      error: () => this.showError('Erro ao deletar serviço!')
     })
+  }
+
+  showSuccess(msg: string){
+    this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: msg})
+  }
+
+  showError(msg: string){
+    this.messageService.add({severity: 'error', summary: 'Erro', detail: msg})
   }
 }
