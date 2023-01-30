@@ -8,6 +8,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { NewOfficeComponent } from './new-office.component';
 import { NewOfficeRoutingModule } from './new-office-routing.module';
 import { ToastModule } from 'primeng/toast';
+import { SkeletonListModule } from 'src/app/components/skeleton-list/skeleton-list.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     MessagesFormModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    SkeletonListModule
   ]
 })
 export class NewOfficeModule { }

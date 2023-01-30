@@ -20,7 +20,8 @@ export class NewOfficeComponent implements OnInit {
   categories!: Category[];
   form!: FormGroup;
   user!: UserInfo;
-  description: string = 'Descreva o serviço usando palavras chaves, por ex: Limpeza de...'
+  description: string = 'Descreva o serviço usando palavras chaves, por ex: Limpeza de...';
+  loading: boolean = false;
   id: any;
   params: any;
 
@@ -74,6 +75,7 @@ export class NewOfficeComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.showSuccess('Serviço cadastrado com sucesso!');
+        this.loading = true;
         this.timing('/services');
       },
       error: () => this.showError('Erro ao cadastrar serviço!')
@@ -91,6 +93,7 @@ export class NewOfficeComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.showSuccess('Informações atualizadas!');
+        this.loading = true;
         this.timing('/services');
       },
       error: () => this.showError('Erro ao atualizar informações!')

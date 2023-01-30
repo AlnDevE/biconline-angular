@@ -1,45 +1,49 @@
 <div class="col-md-10 mx-auto col-lg-4 mt-3">
-  <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
-    <div class="d-flex flex-row">
-      <h5 *ngIf="!params">Cadastro de serviço</h5>
-      <h5 *ngIf="params">Editar serviço</h5>
-      <img pTooltip="As informações dos serviços serão utilizadas em resultados de buscas, e podem ser consultadas por clientes." width="30px" height="30px" src="../../../assets/images/icons/info.png" alt="">
-    </div>
-    <form [formGroup]="form" class="form-container">
-      <div class="mb-4 mt-4">
-        <label for="category" class="form-label">Categoria</label>
-        <select
-          formControlName="categoria"
-          class="form-select form-select-lg defaultSize">
-          <option>Selecione uma categoria</option>
-          <option *ngFor="let item of categories" [ngValue]="item.nome">{{item.nome}}</option>
-        </select>
-        <app-messages
-          *ngIf="form.get('categoria')?.errors?.required && form.get('categoria')?.touched"
-          mensagem="Categoria é obrigatório">
-        </app-messages>
+  <div class="p-4 p-md-7 border rounded-3 bg-light mt-4">
+    <app-skeleton-list *ngIf="loading"></app-skeleton-list>
+    <div class=" card-container" *ngIf="!loading">
+      <div class="d-flex flex-row">
+        <h5 *ngIf="!params">Cadastro de serviço</h5>
+        <h5 *ngIf="params">Editar serviço</h5>
+        <img pTooltip="As informações dos serviços serão utilizadas em resultados de buscas, e podem ser consultadas por clientes." width="30px" height="30px" src="../../../assets/images/icons/info.png" alt="">
       </div>
-      <div class="mb-4">
-        <label for="description" class="form-label">Descrição</label>
-        <textarea formControlName="descricao" class="form-control" id="description" rows="3" [placeholder]="description"></textarea>
-        <app-messages
-          *ngIf="form.get('descricao')?.errors?.required && form.get('descricao')?.touched"
-          mensagem="Descricao é obrigatório">
-        </app-messages>
-        <app-messages
-          *ngIf="form.get('descricao')?.errors?.minlength && form.get('descricao')?.touched"
-          mensagem="tamanho mínimo de 10 caracteres">
-        </app-messages>
-        <app-messages
-          *ngIf="form.get('descricao')?.errors?.maxlength && form.get('descricao')?.touched"
-          mensagem="tamanho máximo de 20 caracteres">
-        </app-messages>
+      <form [formGroup]="form" class="form-container">
+        <div class="mb-4 mt-4">
+          <label for="category" class="form-label">Categoria</label>
+          <select
+            formControlName="categoria"
+            class="form-select form-select-lg defaultSize">
+            <option>Selecione uma categoria</option>
+            <option *ngFor="let item of categories" [ngValue]="item.nome">{{item.nome}}</option>
+          </select>
+          <app-messages
+            *ngIf="form.get('categoria')?.errors?.required && form.get('categoria')?.touched"
+            mensagem="Categoria é obrigatório">
+          </app-messages>
+        </div>
+        <div class="mb-4">
+          <label for="description" class="form-label">Descrição</label>
+          <textarea formControlName="descricao" class="form-control" id="description" rows="3" [placeholder]="description"></textarea>
+          <app-messages
+            *ngIf="form.get('descricao')?.errors?.required && form.get('descricao')?.touched"
+            mensagem="Descricao é obrigatório">
+          </app-messages>
+          <app-messages
+            *ngIf="form.get('descricao')?.errors?.minlength && form.get('descricao')?.touched"
+            mensagem="tamanho mínimo de 10 caracteres">
+          </app-messages>
+          <app-messages
+            *ngIf="form.get('descricao')?.errors?.maxlength && form.get('descricao')?.touched"
+            mensagem="tamanho máximo de 20 caracteres">
+          </app-messages>
+        </div>
+      </form>
+      <div>
+        <button *ngIf="!params" [disabled]="form.invalid" (click)="register()" class="btn btn-d">Cadastrar</button>
+        <button *ngIf="params" [disabled]="form.invalid" (click)="updateOffice()" class="btn btn-d">Atualizar</button>
       </div>
-    </form>
-    <div>
-      <button *ngIf="!params" [disabled]="form.invalid" (click)="register()" class="btn btn-d">Cadastrar</button>
-      <button *ngIf="params" [disabled]="form.invalid" (click)="updateOffice()" class="btn btn-d">Atualizar</button>
     </div>
+
   </div>
   <p-toast></p-toast>
 </div>

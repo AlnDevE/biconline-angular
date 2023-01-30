@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { first } from 'rxjs';
+import { finalize, first } from 'rxjs';
 import { Office } from 'src/app/interfaces/office';
 import { UserInfo } from 'src/app/interfaces/userDecode';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
@@ -17,6 +17,7 @@ export class ServicesComponent implements OnInit {
 
   user!: UserInfo;
   services!: Office[];
+  loading: boolean = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -28,12 +29,14 @@ export class ServicesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.loading = true;
     this.getServices();
   }
 
   getServices(){
     this.prestadorService.getServices(this.user.id).pipe(
-      first()
+      first(),
+      finalize(() => this.loading = false)
     ).subscribe(
       (servicesResponse: any)=>{
         this.services = servicesResponse?.content as Office[];
@@ -48,8 +51,10 @@ export class ServicesComponent implements OnInit {
   }
 
   onDelete(office: any){
+    this.loading = true;
     this.prestadorService.deleteOffice(office.id).pipe(
-      first()
+      first(),
+      finalize(() => this.loading = false)
     ).subscribe({
       next: () => {
         this.showSuccess('Serviço deletado com sucesso!');

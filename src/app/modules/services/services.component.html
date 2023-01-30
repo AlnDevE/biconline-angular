@@ -1,28 +1,33 @@
 <div class="col-md-10 mx-auto col-lg-6 mt-3">
-  <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
-    <div class="d-flex flex-row head">
-      <div class="title">
-        <h5>Serviços</h5>
+  <div class="p-4 p-md-7 border rounded-3 bg-light mt-4">
+    <app-skeleton-list *ngIf="loading"></app-skeleton-list>
+    <div *ngIf="!loading" class="card-container">
+      <div class="d-flex flex-row head">
+        <div class="title">
+          <h5>Serviços</h5>
+        </div>
+        <div class="button">
+          <button type="submit" class="btn btn-edit" routerLink="offices">Add +</button>
+        </div>
       </div>
-      <div class="button">
-        <button type="submit" class="btn btn-edit" routerLink="offices">Add +</button>
+      <div class="line mb-4"></div>
+      <div *ngFor="let item of services" class="item mb-4 d-flex flex-row">
+        <div class="cat-container mt-3">
+          <p><b>Categoria:</b> {{item?.categoria?.nome}}</p>
+        </div>
+        <div class="des-container mt-3">
+          <p><b>Descricao:</b> {{item.descricao}}</p>
+        </div>
+        <div class="edit">
+          <button class="btn" (click)="onEdit(item)"><img width="30px" src="../../../assets/images/icons/editar.png" alt=""></button>
+        </div>
+        <div class="edit">
+          <button class="btn" (click)="onDelete(item)"><img width="30px" src="../../../assets/images/icons/excluir.png" alt=""></button>
+        </div>
       </div>
+
     </div>
-    <div class="line mb-4"></div>
-    <div *ngFor="let item of services" class="item mb-4 d-flex flex-row">
-      <div class="cat-container mt-3">
-        <p><b>Categoria:</b> {{item?.categoria?.nome}}</p>
-      </div>
-      <div class="des-container mt-3">
-        <p><b>Descricao:</b> {{item.descricao}}</p>
-      </div>
-      <div class="edit">
-        <button class="btn" (click)="onEdit(item)"><img width="30px" src="../../../assets/images/icons/editar.png" alt=""></button>
-      </div>
-      <div class="edit">
-        <button class="btn" (click)="onDelete(item)"><img width="30px" src="../../../assets/images/icons/excluir.png" alt=""></button>
-      </div>
-    </div>
+
   </div>
   <p-toast></p-toast>
 </div>
