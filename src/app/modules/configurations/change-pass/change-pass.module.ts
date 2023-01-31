@@ -5,6 +5,8 @@ import { ChangePassRoutingModule } from './change-pass-routing.module';
 import { ChangePassComponent } from './change-pass.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessagesFormModule } from 'src/app/components/messages/messages.module';
+import { ToastModule } from 'primeng/toast';
+import { SkeletonListModule } from 'src/app/components/skeleton-list/skeleton-list.module';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { MessagesFormModule } from 'src/app/components/messages/messages.module'
     CommonModule,
     ChangePassRoutingModule,
     ReactiveFormsModule,
-    MessagesFormModule
+    MessagesFormModule,
+    ToastModule,
+    SkeletonListModule
   ]
 })
 export class ChangePassModule { }

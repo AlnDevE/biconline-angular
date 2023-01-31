@@ -1,6 +1,7 @@
 <div class="col-md-10 mx-auto col-lg-4 mt-3">
   <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
-    <form [formGroup]="form">
+    <app-skeleton-list *ngIf="loading"></app-skeleton-list>
+    <form [formGroup]="form" *ngIf="!loading">
       <div class="form-floating mb-4">
         <input
         type="password"
@@ -12,6 +13,11 @@
         <app-messages
             *ngIf="form.get('old')?.errors?.required && form.get('old')?.touched"
             mensagem="Campo obrigatório"
+            >
+        </app-messages>
+        <app-messages
+            *ngIf="form.get('old')?.errors?.nomatch"
+            mensagem="Senha inválida"
             >
         </app-messages>
       </div>
@@ -55,5 +61,6 @@
       </div>
       <button [disabled]="!form.valid" class="w-100 btn btn-lg btnSave" (click)="onSaveChanges()" type="submit">Salvar</button>
     </form>
+    <p-toast></p-toast>
   </div>
 </div>

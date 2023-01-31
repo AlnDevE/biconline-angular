@@ -49,4 +49,8 @@ export class SharedService {
       'data': solicitation.data
     })
   }
+
+  changePassword(id: any, type: any, passwordForm: any){
+    return this.httpClient.put(`${this.apiUrl}${this.getTypeUrl(type)}s/${id}/passwords`, passwordForm);
+  }
 }
