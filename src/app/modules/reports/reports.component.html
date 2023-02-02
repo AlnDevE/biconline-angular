@@ -1,1 +1,17 @@
-<p>reports works!</p>
+<div class="col-md-10 mx-auto col-lg-4 mt-3">
+  <div class="p-4 p-md-7 border rounded-3 bg-light card-container">
+    <div class="d-flex justify-content-center">
+      <h5>Reportar prestador</h5>
+    </div>
+    <div class="body" *ngIf="user">
+      <div class="c1 m-2">
+        <img class="img-container" *ngIf="!user.pathPhoto" src="../../../assets/images/default-img.png" alt="">
+        <!-- <img class="img-container" *ngIf="user.pathPhoto" src="{{pathGetImages + user.pathPhoto}}" alt=""> -->
+        <p class="m-2">{{user.nome}}</p>
+      </div>
+      <div class="c2 m-2">
+        2
+      </div>
+    </div>
+  </div>
+</div>
