@@ -1,6 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { first } from 'rxjs';
 import { Solicitation } from 'src/app/interfaces/solicitation';
 import { UserInfo } from 'src/app/interfaces/userDecode';
 import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
@@ -21,7 +22,8 @@ export class SolicitationsComponent implements OnInit {
   constructor(
     private authUser: AutenticacaoUsuarioService,
      private sharedService: SharedService,
-     private messageService: MessageService
+     private messageService: MessageService,
+     private router: Router
     ) {
     this.authUser.retornaUsuarioLogado().subscribe(
       (data: any) => {
@@ -42,11 +44,11 @@ export class SolicitationsComponent implements OnInit {
   }
 
   get_all_solicitations(id: number){
-    this.sharedService.get_solicitations(id, this.path).subscribe(
-      (data: any) =>{
-        this.treatData(data);
-      }
-    )
+    this.sharedService.get_solicitations(id, this.path).pipe(
+      first()
+    ).subscribe({
+      next: (data: any) => this.treatData(data)
+    })
   }
 
   treatData(data: any){
@@ -72,15 +74,17 @@ export class SolicitationsComponent implements OnInit {
   }
 
   onSave(solicitationChange: Solicitation){
-    this.sharedService.putSolicitations(this.user.id, solicitationChange).subscribe(
-      ()=>{
+    this.sharedService.putSolicitations(this.user.id, solicitationChange).pipe(
+      first()
+    ).subscribe({
+      next: () => {
         this.showSuccess();
         this.ngOnInit();
       },
-      ()=>{
+      error: () => {
         this.showError('Erro ao alterar solicitação')
       }
-    )
+    })
   }
 
   showSuccess() {
@@ -89,5 +93,9 @@ export class SolicitationsComponent implements OnInit {
 
   showError(msg: string){
     this.messageService.add({severity:'error', summary:'Erro', detail: msg});
+  }
+
+  onReport(solicitation: Solicitation){
+    this.router.navigate(['providers/', solicitation.idPrestador, 'reports'])
   }
 }

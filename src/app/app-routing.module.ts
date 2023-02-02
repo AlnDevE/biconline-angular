@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'services',
     loadChildren: () => import('./modules/services/services.module').then(m => m.ServicesModule)
+  },
+  {
+    path: 'providers/:id/reports',
+    loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule)
   }
 
 ];

@@ -56,7 +56,10 @@
                     (click)="onSave(solicitation)">Salvar
                     <i class="pi-pencil"></i>
                   </button>
-                  <button class="btn btnWarn"><img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt=""></button>
+                  <button (click)="onReport(solicitation)"
+                    class="btn btnWarn">
+                    <img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt="">
+                  </button>
                 </td>
             </tr>
         </ng-template>
