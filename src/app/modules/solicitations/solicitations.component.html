@@ -3,7 +3,7 @@
 </div>
 <p-toast></p-toast>
 <div class="container">
-  <div class="mx-auto col-lg-10 mt-3">
+  <div class="mx-auto col-lg-10.9 mt-3">
     <div class="card">
       <p-table responsiveLayout="scroll" [value]="solicitations">
         <ng-template pTemplate="header" let-columns>
@@ -44,7 +44,7 @@
                   </select>
                 </td>
 
-                <td>
+                <td class="actions">
                   <button
                     *ngIf="solicitation.edit"
                     class="btn btnDefault" (click)="onEdit(solicitation)">Editar
@@ -60,6 +60,11 @@
                     class="btn btnWarn">
                     <img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt="">
                   </button>
+                  <button (click)="onEvaluate(solicitation)" 
+                    class="btn">
+                    <img width="30px" src="../../../assets/images/icons/comente.png" alt="">
+                  </button>
+
                 </td>
             </tr>
         </ng-template>
