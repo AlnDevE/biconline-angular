@@ -5,7 +5,7 @@
 <div class="container">
   <div class="mx-auto col-lg-10.9 mt-3">
     <div class="card">
-      <p-table responsiveLayout="scroll" [value]="solicitations">
+      <p-table responsiveLayout="scroll" [value]="solicitations" [paginator]="true" [rows]="5">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>Solicitação </th>
