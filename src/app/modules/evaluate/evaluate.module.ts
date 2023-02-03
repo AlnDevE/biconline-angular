@@ -6,6 +6,8 @@ import { EvaluateComponent } from './evaluate.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
+import { SkeletonListModule } from 'src/app/components/skeleton-list/skeleton-list.module';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { RatingModule } from 'primeng/rating';
     EvaluateRoutingModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    RatingModule
+    RatingModule,
+    SkeletonListModule,
+    ToastModule
   ]
 })
 export class EvaluateModule { }

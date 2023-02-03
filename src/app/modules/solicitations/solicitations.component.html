@@ -60,7 +60,7 @@
                     class="btn btnWarn">
                     <img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt="">
                   </button>
-                  <button (click)="onEvaluate(solicitation)" 
+                  <button (click)="onEvaluate(solicitation)" *ngIf="solicitation.status == 'Encerrada'"
                     class="btn">
                     <img width="30px" src="../../../assets/images/icons/comente.png" alt="">
                   </button>
