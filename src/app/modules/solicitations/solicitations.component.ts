@@ -18,6 +18,7 @@ export class SolicitationsComponent implements OnInit {
   path!: string;
   solicitations!: Solicitation[];
   status!: any[];
+  notContent: string = 'Você ainda não possui solicitações';
 
   constructor(
     private authUser: AutenticacaoUsuarioService,

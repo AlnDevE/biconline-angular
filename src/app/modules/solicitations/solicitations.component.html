@@ -3,10 +3,14 @@
 </div>
 <p-toast></p-toast>
 <div class="container">
-  <div class="mx-auto col-lg-10.9 mt-3">
-    <div class="card">
-      <p-table responsiveLayout="scroll" [value]="solicitations" [paginator]="true" [rows]="5">
-        <ng-template pTemplate="header" let-columns>
+  <div class="mx-auto col-lg-10 mt-3">
+    <div>
+      <p-table *ngIf="solicitations.length > 0"
+        responsiveLayout="scroll"
+        [responsive]="true"
+        [value]="solicitations"
+        [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header" let-columns >
             <tr>
                 <th>Solicitação </th>
                 <th *ngIf="user.tipo == 'Cliente'">Prestador</th>
@@ -68,7 +72,11 @@
                 </td>
             </tr>
         </ng-template>
-    </p-table>
+      </p-table>
+      <div class="col-md-10 mt-3 p-4 p-md-7 border rounded-3 bg-light">
+        <h4>Você ainda não possui solicitações</h4>
+        <a *ngIf="user.tipo == 'Cliente'" routerLink="/home">Procure por serviços</a>
+      </div>
   </div>
   </div>
 </div>
