@@ -98,4 +98,8 @@ export class SolicitationsComponent implements OnInit {
   onReport(solicitation: Solicitation){
     this.router.navigate(['providers/', solicitation.idPrestador, 'reports'])
   }
+
+  onEvaluate(solicitation: Solicitation){
+    this.router.navigate(['providers/evaluate', solicitation])
+  }
 }

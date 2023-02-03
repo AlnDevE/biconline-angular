@@ -1,0 +1,32 @@
+<div class="col-md-10 mx-auto col-lg-4 mt-3">
+  <div class="p-4 p-md-7 border rounded-3 bg-light card-container"  [formGroup]="form">
+
+    <div class="d-flex justify-content-center">
+      <h5>Avaliação</h5>
+    </div>
+    <div class="line"></div>
+
+    <div class="m-4">
+      <div class="m-1 c1">
+        <h6 class="solicitacao">ID SOLICITAÇÃO: <b>{{params?.id}}</b></h6>
+        <div class="rating">
+          <p-rating formControlName="nota" class="stars" [stars]="5" [cancel]="false"></p-rating>
+        </div>
+      </div>
+      <div class="m-1">
+        <h6>DESCRIÇÃO: <b>{{params?.descricao}}</b></h6>
+      </div>
+    </div>
+    <div class="m-3">
+      <textarea
+        formControlName="comentario" class="form-control"
+        placeholder="Faça um comentário sobre o serviço prestado / prestador"
+        rows="2" cols="36" [autoResize]="true"
+        pInputTextarea >
+      </textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-send" [disabled]="form.invalid" (click)="send()">Enviar</button>
+    </div>
+  </div>
+</div>

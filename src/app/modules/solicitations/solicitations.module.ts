@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomDatePipe } from 'src/app/utils/date/custom.datepipe';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MessageService } from 'primeng/api';
     SolicitationsRoutingModule,
     TableModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    RouterModule
   ],
   providers:[MessageService]
 })
