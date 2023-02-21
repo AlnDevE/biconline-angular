@@ -16,7 +16,7 @@ export class SolicitationsComponent implements OnInit {
 
   user!: UserInfo;
   path!: string;
-  solicitations!: Solicitation[];
+  solicitations: Solicitation[] = [];
   status!: any[];
   notContent: string = 'Você ainda não possui solicitações';
 
@@ -48,14 +48,15 @@ export class SolicitationsComponent implements OnInit {
     this.sharedService.get_solicitations(id, this.path).pipe(
       first()
     ).subscribe({
-      next: (data: any) => this.treatData(data)
+      next: (data: any) => this.treatData(data),
+      error: () => this.treatData([])
     })
   }
 
   treatData(data: any){
     this.solicitations = data.map((element: Solicitation) =>{
-      element.edit = true;
-      element.editStatus = true;
+      element.edit = false;
+      element.editStatus = false;
       return element;
     })
   }
@@ -63,12 +64,8 @@ export class SolicitationsComponent implements OnInit {
   onEdit(solicitation: Solicitation){
     this.solicitations = this.solicitations.map((element: Solicitation)=>{
       if(element.id == solicitation.id){
-        if(element.status == 'Pendente' || this.user.tipo == 'Cliente'){
-          element.edit = true
-        }
-        else{
-          element.editStatus = false;
-        }
+        element.edit = true;
+        element.editStatus = true;
       }
       return element;
     })
