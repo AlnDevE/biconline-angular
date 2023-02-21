@@ -56,4 +56,8 @@ export class ClienteService {
   getSolicitacoes(id: any): any{
     return this.httpClient.get<any>(this.url+'solicitacoes/clientes/'+id).pipe(take(1));
   }
+
+  reportProvider(form: any){
+    return this.httpClient.post<any>(`${this.url}clientes/reports`, form);
+  }
 }

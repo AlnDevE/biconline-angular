@@ -3,15 +3,25 @@
     <div class="d-flex justify-content-center">
       <h5>Reportar prestador</h5>
     </div>
-    <div class="body" *ngIf="user">
+    <div class="body mt-3" *ngIf="user">
       <div class="c1 m-2">
-        <img class="img-container" *ngIf="!user.pathPhoto" src="../../../assets/images/default-img.png" alt="">
-        <!-- <img class="img-container" *ngIf="user.pathPhoto" src="{{pathGetImages + user.pathPhoto}}" alt=""> -->
-        <p class="m-2">{{user.nome}}</p>
+        <div class="img-container">
+          <img width="98%" height="98%" *ngIf="!user.pathPhoto" src="../../../assets/images/default-img.png" alt="">
+          <img width="98%" height="98%" *ngIf="user.pathPhoto" src="{{pathGetImages + user.pathPhoto}}" alt="">
+        </div>
+        <b><p class="m-2">{{user.nome}}</p></b>
       </div>
-      <div class="c2 m-2">
-        2
+      <div class="c2 m-2" [formGroup]="form">
+        <textarea
+          formControlName="descricao" class="form-control"
+          placeholder="Faça uma breve descrição"
+          rows="4" cols="36" [autoResize]="true"
+          pInputTextarea >
+        </textarea>
       </div>
+    </div>
+    <div class="btn-r">
+      <button (click)="onReport()" [disabled]="form.invalid" class="btn btn-warning">Reportar</button>
     </div>
   </div>
 </div>
