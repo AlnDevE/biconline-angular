@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiURL: 'https://bicoon-app.herokuapp.com/bicoon/',
-  apiURL: 'http://localhost:8080/bicoon/',
-  getCategories: 'http://localhost:8080/bicoon/categorias/'
+  apiURL: 'https://biconlineapp.rj.r.appspot.com/bicoon/'
 };
 
 /*

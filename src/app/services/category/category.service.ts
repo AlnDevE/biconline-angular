@@ -8,7 +8,7 @@ import { TokenService } from '../token/token.service';
 })
 export class CategoryService {
 
-  url = environment.getCategories;
+  url = `${environment.apiURL}categorias/`;
 
   constructor(private httpClient: HttpClient, private tokenService: TokenService) { }
 
