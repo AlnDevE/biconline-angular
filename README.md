@@ -1,27 +1,15 @@
-# Bicoonline
+# Biconline
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+O projeto de biconline soluções para autônomos tem como objetivo fornecer uma plataforma completa para prestadores de serviços e clientes, permitindo que ambos possam se conectar de forma eficiente e segura. A plataforma conta com diversas funcionalidades, como cadastro de clientes e prestadores de serviços, sistema de busca por prestadores de serviços utilizando filtros de busca, agendamento de serviços, avaliação dos serviços, gerenciamento de serviços para os prestadores, área para dúvidas frequentes e gerenciamento de solicitações de serviços.
 
-## Development server
+O cadastro de clientes e prestadores de serviços permitirá que ambos possam criar perfis detalhados, incluindo informações sobre suas habilidades para prestadores. Os clientes poderão pesquisar prestadores de serviços com base em filtros de busca, como localização, especialidade, e agendar serviços diretamente pela plataforma.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O sistema de avaliação dos serviços permitirá que os clientes avaliem a qualidade dos serviços prestados pelos autônomos, incentivando a prestação de serviços de alta qualidade e ajudando outros clientes a tomar decisões informadas ao escolher um prestador de serviços.
 
-## Code scaffolding
+O gerenciamento de serviços para os prestadores incluirá ferramentas para gerenciar os serviços fornecidos pelo prestador, podendo inserir, alterar e excluir, ajudando assim os prestadores a gerenciar melhor seus negócios.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A área para dúvidas frequentes permitirá que os clientes e prestadores de serviços obtenham respostas para as perguntas mais comuns, tornando o uso da plataforma mais fácil e intuitivo.
 
-## Build
+Por fim, o gerenciamento de solicitações de serviços permitirá que os clientes e prestadores gerenciem as solicitações de serviços diretamente pela plataforma podendo consultar, alterar ou cancelar de maneira intuitiva e eficaz.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Com todas essas funcionalidades, espera-se que a plataforma possa ajudar autônomos a encontrar novos clientes e gerenciar seus negócios com mais eficiência, enquanto os clientes podem encontrar prestadores de serviços confiáveis e de qualidade.
