@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
       (data:any) => {
         this.tokenService.salvaToken(data['token']);
         this.setInfoOnLocalStorage();
-        this.router.navigate(['/home']);
+        if(this.authUsuarioService.isProvider()){
+          this.router.navigate(['/solicitations']);
+        }else{
+          this.router.navigate(['/home']);
+        }
       },
       (error:any) => {
         this.showError(error);
