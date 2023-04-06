@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         {nome: 'Itapira'},
         {nome: 'Estiva Gerbi'},
         {nome: 'Engenheiro Coelho'},
-        {nome: 'Santo Antônio de Posse'}
+        {name: 'Santo Antônio de Posse'}
     ];
 
     this.route.queryParams.subscribe(

@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
         {name: 'Itapira'},
         {name: 'Estiva Gerbi'},
         {name: 'Engenheiro Coelho'},
-        {nome: 'Santo Antônio de Posse'}
+        {name: 'Santo Antônio de Posse'}
     ];
     }
 
