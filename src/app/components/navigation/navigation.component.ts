@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   serviceDescription: any = new FormControl('');
   user!: any;
   pathGetImages: String = `${environment.apiURL}prestadores/images/users/`;
+  typeOfUser: string = "Cliente";
 
   constructor(public tokenService:TokenService, private router: Router, private event: EventEmitterService) {
     this.event.get('user').subscribe(
@@ -43,5 +44,9 @@ export class NavigationComponent implements OnInit {
   getUserLocalStorage(){
     let userToParse = localStorage.getItem('user');
     this.user = userToParse ? JSON.parse(userToParse) : undefined;
+    userToParse = localStorage.getItem('userinfo');
+    this.typeOfUser = userToParse ? (
+      JSON.parse(userToParse)?.tipo
+    ): undefined;
   }
 }

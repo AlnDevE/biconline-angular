@@ -21,7 +21,7 @@
             <a class="nav-link" routerLink="/start" routerLinkActive="active">Início</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+            <a *ngIf="tokenService.possuiToken() && typeOfUser == 'Cliente' " class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
             <a *ngIf="tokenService.possuiToken()" class="nav-link" routerLink="/solicitations" routerLinkActive="active">Solicitações</a>

@@ -54,4 +54,11 @@ export class AutenticacaoUsuarioService {
     return this.tokenService.possuiToken();
   }
 
+  isProvider(){
+    let userToParse = localStorage.getItem('userinfo');
+    return userToParse ? (
+      JSON.parse(userToParse)?.tipo == 'Prestador'
+    ): false
+  }
+
 }
