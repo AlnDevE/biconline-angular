@@ -42,8 +42,9 @@ export class ProfileComponent implements OnInit {
         {name: 'Mogi Mirim'},
         {name: 'Mogi Guaçu'},
         {name: 'Itapira'},
-        {name: 'Arthur Nogueira'},
-        {name: 'Limeira'}
+        {name: 'Estiva Gerbi'},
+        {name: 'Engenheiro Coelho'},
+        {nome: 'Santo Antônio de Posse'}
     ];
     }
 
