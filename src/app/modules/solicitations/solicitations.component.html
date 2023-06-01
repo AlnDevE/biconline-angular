@@ -60,10 +60,10 @@
                     (click)="onSave(solicitation)">Salvar
                     <i class="pi-pencil"></i>
                   </button>
-                  <button (click)="onReport(solicitation)"
+                  <!-- <button (click)="onReport(solicitation)"
                     class="btn btnWarn">
                     <img width="30px" src="../../../assets/images/icons/sinal-de-aviso.png" alt="">
-                  </button>
+                  </button> -->
                   <button (click)="onEvaluate(solicitation)"
                     *ngIf="solicitation.status == 'Encerrada' && user?.tipo == 'Cliente'"
                     class="btn">
