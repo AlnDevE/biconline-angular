@@ -19,6 +19,7 @@ export class SolicitationsComponent implements OnInit {
   solicitations: Solicitation[] = [];
   status!: any[];
   notContent: string = 'Você ainda não possui solicitações';
+  loading: boolean = false;
 
   constructor(
     private authUser: AutenticacaoUsuarioService,
@@ -33,10 +34,10 @@ export class SolicitationsComponent implements OnInit {
       }
     )
     this.status = [
-      {name: 'Pendente'},
-      {name: 'Encerrada'},
-      {name: 'Cancelada'},
-      {name: 'Aceita'},
+      {name: 'Pendente', user: 'All'},
+      {name: 'Encerrada', user: 'Prestador'},
+      {name: 'Cancelada', user: 'Cliente'},
+      {name: 'Aceita', user: 'Prestador'},
     ]
   }
 
@@ -45,6 +46,7 @@ export class SolicitationsComponent implements OnInit {
   }
 
   get_all_solicitations(id: number){
+    this.loading = true;
     this.sharedService.get_solicitations(id, this.path).pipe(
       first()
     ).subscribe({
@@ -54,6 +56,7 @@ export class SolicitationsComponent implements OnInit {
   }
 
   treatData(data: any){
+    this.loading = false;
     this.solicitations = data.map((element: Solicitation) =>{
       element.edit = false;
       element.editStatus = false;

@@ -4,7 +4,8 @@
 <p-toast></p-toast>
 <div class="container">
   <div class="mx-auto col-lg-10 mt-3">
-    <div>
+    <p-progressSpinner class="d-flex justify-center" *ngIf="loading"></p-progressSpinner>
+    <div *ngIf="!loading">
       <p-table *ngIf="solicitations.length > 0"
         responsiveLayout="scroll"
         [responsive]="true"

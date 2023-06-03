@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { forkJoin } from 'rxjs';
 import { getRatingMessages } from 'src/app/functions/ratingMessages';
 import { Provider } from 'src/app/interfaces/provider';
+import { UserInfo } from 'src/app/interfaces/userDecode';
+import { AutenticacaoUsuarioService } from 'src/app/services/autenticacao/autenticacao-usuario.service';
 import { PrestadorService } from 'src/app/services/prestador/prestador.service';
 import { environment } from 'src/environments/environment';
 
@@ -26,13 +28,20 @@ export class ViewProviderComponent implements OnInit {
   ratingMessage!: string;
   categories!: any;
   loading: boolean = false;
+  user!: UserInfo;
 
   constructor(
     private route: ActivatedRoute,
     private prestadorService: PrestadorService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
-    ) { }
+    private messageService: MessageService,
+    private router: Router,
+    private authUser: AutenticacaoUsuarioService
+    ) {
+      this.authUser.retornaUsuarioLogado().subscribe({
+        next: (user: any) => this.user = user as UserInfo
+      })
+    }
 
   ngOnInit(): void {
     this.buildForm();
@@ -66,11 +75,15 @@ export class ViewProviderComponent implements OnInit {
 
   onSubmit(){
     if(this.formSolicitation.valid){
-      this.prestadorService.sendSolicitation(this.formSolicitation.value, this.provider.id).subscribe(
-        res => {
+      this.prestadorService.sendSolicitation(this.formSolicitation.value, this.user.id, this.provider.id)
+      .subscribe({
+        next: () => {
           this.showSuccess();
+          setTimeout(() => {
+            this.router.navigate(['/solicitations'])
+          }, 1000);
         }
-      )
+      })
     }
   }
 

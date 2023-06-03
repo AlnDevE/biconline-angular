@@ -9,6 +9,7 @@ import { CustomDatePipe } from 'src/app/utils/date/custom.datepipe';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     TableModule,
     FormsModule,
     ToastModule,
-    RouterModule
+    RouterModule,
+    ProgressSpinnerModule
   ],
   providers:[MessageService]
 })

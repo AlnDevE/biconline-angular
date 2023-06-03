@@ -45,8 +45,8 @@ export class PrestadorService{
     return this.httpClient.get<any>(this.url+'solicitacoes/prestadores/'+id).pipe(take(1));
   }
 
-  sendSolicitation(form: any, idPrestador: number){
-    return this.httpClient.post(`${this.url}solicitacoes/1/${idPrestador}`,
+  sendSolicitation(form: any, idCliente: any, idPrestador: number){
+    return this.httpClient.post(`${this.url}solicitacoes/${idCliente}/${idPrestador}`,
     {
       data: form['data'],
       descricao: form['descricao']
