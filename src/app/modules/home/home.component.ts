@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   citySelected: any;
   serviceSearch: any;
   subs: any;
+  loadingSearch: boolean = false;
 
   servicesProviders: Provider[] = [];
 
@@ -62,6 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllProviders(){
+    this.loadingSearch = true;
     this.prestadorService.searchProviders().subscribe(
       data => {
         this.treatListProviders(data)
@@ -72,9 +74,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   treatListProviders(data: any){
     this.servicesProviders.length = 0;
     this.servicesProviders = data?.content ? data.content : undefined;
+    this.loadingSearch = false;
   }
 
   getFilteredProviders(){
+    this.loadingSearch = true;
     let filters: Search = {};
     filters.cidade = this.citySelected?.nome ? this.citySelected?.nome : undefined;
     filters.categoria = this.categorySelected?.nome ? this.categorySelected?.nome : undefined;

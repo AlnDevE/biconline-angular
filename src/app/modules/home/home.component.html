@@ -17,10 +17,15 @@
             </div>
         </div>
         <div class="col-9 card-container">
-            <app-card *ngIf="servicesProviders.length > 0 else notcontent" [servicesProviders]="servicesProviders"></app-card>
-            <ng-template #notcontent>
-              <h5 class="p-7">Sem resultados</h5>
-            </ng-template>
+            <div>
+              <p-progressSpinner class="d-flex justify-center mt-5" *ngIf="loadingSearch"></p-progressSpinner>
+            </div>
+            <div *ngIf="!loadingSearch">
+              <app-card *ngIf="servicesProviders.length > 0 else notcontent" [servicesProviders]="servicesProviders"></app-card>
+              <ng-template #notcontent>
+                <h5 class="p-7">Sem resultados</h5>
+              </ng-template>
+            </div>
         </div>
     </div>
 </div>

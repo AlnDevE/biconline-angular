@@ -1,7 +1,8 @@
 <div class="container">
   <p-toast></p-toast>
   <div class="mx-auto col-lg-9">
-    <div class="card mb-5">
+    <p-progressSpinner class="loading mb-5" *ngIf="loading"></p-progressSpinner>
+    <div *ngIf="!loading" class="card mb-5">
       <div *ngIf="provider">
         <div class="info">
 

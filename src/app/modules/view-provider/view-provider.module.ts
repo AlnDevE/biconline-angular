@@ -7,6 +7,7 @@ import { RatingModule } from 'primeng/rating';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ReactiveFormsModule,
     ToastModule,
     FormsModule,
-    TooltipModule
+    TooltipModule,
+    ProgressSpinnerModule
   ]
 })
 export class ViewProviderModule { }

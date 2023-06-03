@@ -25,6 +25,7 @@ export class ViewProviderComponent implements OnInit {
   formSolicitation!: FormGroup;
   ratingMessage!: string;
   categories!: any;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class ViewProviderComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.id = this.route.snapshot.paramMap.get('id');
+    this.loading = true;
     forkJoin({
       provider: this.prestadorService.findById(this.id),
       rating: this.prestadorService.getRating(this.id)
@@ -46,6 +48,7 @@ export class ViewProviderComponent implements OnInit {
         this.rating = responses.rating.mediaNota;
         this.ratingMessage = getRatingMessages(this.rating);
         this.treatCategories();
+        this.loading = false;
       }
     )
   }

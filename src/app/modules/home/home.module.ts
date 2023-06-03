@@ -6,6 +6,7 @@ import { HomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
 import { CardModule } from '../card/card.module';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CardModule } from '../card/card.module';
     HomeRoutingModule,
     FormsModule,
     DropdownModule,
-    CardModule
+    CardModule,
+    ProgressSpinnerModule
   ]
 })
 export class HomeModule { }

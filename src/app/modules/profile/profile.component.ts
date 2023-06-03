@@ -90,20 +90,15 @@ export class ProfileComponent implements OnInit {
           this.userForm.getRawValue(), userInfo['tipo'] as string, this.user.id
           )
         )
-      ).pipe(first(), finalize(
-        ()=> {
-          this.loading = false;
-        }
-      )
-        ).subscribe(
-        () =>{
+      ).pipe(first()
+      ).subscribe({
+        next: () =>{
           this.showSuccess();
+          this.loading = false;
           this.userForm.disable();
         },
-        () =>{
-          this.showError('Erro ao atualizar dados!');
-        }
-      )
+        error: () => this.showError('Erro ao atualizar dados!')
+      })
     }
     else{
       this.showError('Dados Inválidos');
