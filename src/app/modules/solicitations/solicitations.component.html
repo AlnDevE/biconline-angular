@@ -31,7 +31,7 @@
                 <td>
                   <input class="form-control" type="text"
                   [(ngModel)]="solicitation.descricao"
-                  [disabled]="!solicitation.edit">
+                  [disabled]="!solicitation.edit || user.tipo == 'Prestador'">
                 </td>
 
                 <td>
@@ -39,7 +39,7 @@
                   class="form-control"
                   type="datetime-local"
                   [(ngModel)]="solicitation.data"
-                  [disabled]="!solicitation.edit">
+                  [disabled]="!solicitation.edit || user.tipo == 'Prestador'">
                 </td>
 
                 <td>
