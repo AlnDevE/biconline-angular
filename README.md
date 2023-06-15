@@ -42,10 +42,10 @@ Link para download do projeto backend: https://github.com/AlnDevE/biconline-api
 </div>
 <div style="display: flex; flex-direction:row;">
     <img src="preview/cadastro-servico.png" alt="" width="48%"/>
-    <img src="preview/configuracoes-prestador.png" alt="" width="48%"/>
+    <img src="preview/alteracao-senha.png" alt="" width="48%"/>
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="preview/alteracao-senha.png" alt="" width="48%"/>
+    <img src="preview/configuracoes-prestador.png" alt="" width="48%"/>
     <img src="preview/ajuda.png" alt="" width="48%"/>
 </div>
 
