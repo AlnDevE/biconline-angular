@@ -14,10 +14,6 @@ Link para download do projeto backend: https://github.com/AlnDevE/biconline-api
 
 - [x] 
 
-## ⚙️ Funcionalidades Futuras
-
-- [x] 
-
 ## 💻 Preview
 
 <div style="display: flex; flex-direction:row;">
