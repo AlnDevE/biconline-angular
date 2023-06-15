@@ -21,32 +21,32 @@ Link para download do projeto backend: https://github.com/AlnDevE/biconline-api
 ## 💻 Preview
 
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/inicio.png" alt="" />
-    <img src="././preview/home.png" alt="" />
+    <img src="preview/inicio.png" alt="" />
+    <img src="preview/home.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/view-prestador.png" alt="" />
-    <img src="././preview/login.png" alt="" />
+    <img src="preview/view-prestador.png" alt="" />
+    <img src="preview/login.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/solicitação.png" alt="" />
-    <img src="././preview/cadastro-prestador.png" alt="" />
+    <img src="preview/solicitação.png" alt="" />
+    <img src="preview/cadastro-prestador.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/cadastro-cliente" alt="" />
-    <img src="././preview/avaliação.png" alt="" />
+    <img src="preview/cadastro-cliente" alt="" />
+    <img src="preview/avaliação.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/perfil.png" alt="" />
-    <img src="././preview/serviços.png" alt="" />
+    <img src="preview/perfil.png" alt="" />
+    <img src="preview/serviços.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/cadastro-servico.png" alt="" />
-    <img src="././preview/configurações-prestador.png" alt="" />
+    <img src="preview/cadastro-servico.png" alt="" />
+    <img src="preview/configurações-prestador.png" alt="" />
 </div>
 <div style="display: flex; flex-direction:row;">
-    <img src="././preview/alteracao-senha.png" alt="" />
-    <img src="././preview/ajuda.png" alt="" />
+    <img src="preview/alteracao-senha.png" alt="" />
+    <img src="preview/ajuda.png" alt="" />
 </div>
 
 ## 💻 Development server
